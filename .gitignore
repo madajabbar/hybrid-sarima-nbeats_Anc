@@ -1,0 +1,5 @@
+__pycache__/
+.ipynb_checkpoints/
+*.h5
+checkpoints/
+ray_result*/
