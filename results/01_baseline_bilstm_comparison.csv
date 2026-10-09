@@ -1,0 +1,3 @@
+model,rmse_ours,mae_ours,mape_ours,rmse_ref,mae_ref,mape_ref,window
+SARIMA,0.6999,0.5720,7.62,0.700,0.572,7.62,"last 90 test days (NO2, Box-Cox scale)"
+SARIMA+BiLSTM,0.7066,0.5806,7.78,0.706,0.580,7.79,"last 90 test days (NO2, Box-Cox scale)"
