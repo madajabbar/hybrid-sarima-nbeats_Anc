@@ -1,0 +1,10 @@
+block,metric,ours,reference_run,match
+"cell4 core (NO2, 90 test days)",SARIMA RMSE/MAE/MAPE,0.6999 / 0.5720 / 7.62%,0.700 / 0.572 / 7.62%,IDENTIK
+"cell4 core (NO2, 90 test days)",HYBRID RMSE/MAE/MAPE,0.7066 / 0.5806 / 7.78%,0.706 / 0.580 / 7.79%,IDENTIK
+cell13 horizon 1d,RMSE/MAE/MAPE,4.5100 / 4.5093 / 308.36%,0.1640 / 0.1468 / 9.71%,BEDA
+cell13 horizon 7d,RMSE/MAE/MAPE,4.3992 / 4.3987 / 300.84%,0.1346 / 0.1150 / 7.58%,BEDA
+cell13 horizon 30d,RMSE/MAE/MAPE,3.2125 / 3.2118 / 219.74%,0.0994 / 0.0792 / 5.24%,BEDA
+cell14 residuals,BiLSTM RMSE/MAE/MAPE,3.097 / 3.009 / 1974.16%,0.707 / 0.580 / 119.04%,BEDA
+cell14 residuals,SARIMA (self-comparison),0.000 / 0.000 / 0.00%,0.000 / 0.000 / 0.00%,IDENTIK (bug: deret dibanding dirinya sendiri)
+cell17 extreme values,SARIMA RMSE/MAE/MAPE,1.656 / 1.612 / 23.55%,1.582 / 1.566 / 25.08%,BEDA
+cell17 extreme values,HYBRID RMSE/MAE/MAPE,2.748 / 2.248 / 29.42%,1.626 / 1.612 / 25.86%,BEDA
