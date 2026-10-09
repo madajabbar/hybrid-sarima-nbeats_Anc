@@ -3,3 +3,6 @@ __pycache__/
 *.h5
 checkpoints/
 ray_result*/
+lstm3_tuning/
+notebooks/*.csv
+notebooks/*.png
