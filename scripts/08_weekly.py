@@ -29,10 +29,7 @@ VARIANTS = {
     'B_mingguan_s7': {'order': (2, 1, 1), 'seasonal': (1, 0, 1, 7), 'weekly_exog': False},
     'C_paper_fourier': {'order': (2, 1, 1), 'seasonal': (0, 0, 0, 12), 'weekly_exog': True},
 }
-PLAN = {'NO2': ['A_paper_s12', 'B_mingguan_s7', 'C_paper_fourier'],
-        'PM10': ['A_paper_s12', 'B_mingguan_s7'],
-        'PM25': ['A_paper_s12', 'B_mingguan_s7'],
-        }
+PLAN = {f: ['A_paper_s12', 'B_mingguan_s7', 'C_paper_fourier'] for f in ['NO2', 'PM10', 'PM25']}
 FOLD_OFFSETS = [0, 180, 360]
 TEST_SIZE_DAYS, ORIGIN_STEP, MAX_H, HORIZONS = 720, 30, 30, [1, 7, 30]
 VAL_WINDOW, LAGS, MIN_TRAIN = 120, [1, 2, 3, 4, 5, 6, 7], 400
