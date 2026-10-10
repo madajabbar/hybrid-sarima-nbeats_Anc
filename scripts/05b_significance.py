@@ -23,10 +23,10 @@ def dm_test(e1, e2, h):
     n = len(d)
     dbar = float(np.mean(d))
     v = float(np.mean((d - dbar) ** 2))
-    for k in range(1, h):
+    for k in range(1, min(h - 1, max(1, n // 4)) + 1):   # lag dibatasi: n kecil (h=30, n=23)
         v += 2 * float(np.mean((d[k:] - dbar) * (d[:-k] - dbar)))
-    if v <= 0:
-        return np.nan, np.nan
+    if not np.isfinite(v) or v <= 0:
+        v = g0          # HAC bisa negatif di n kecil -> pakai varians tanpa autokorelasi
     stat = (dbar / np.sqrt(v / n)) * np.sqrt((n + 1 - 2 * h + h * (h - 1) / n) / n)
     return stat, float(2 * (1 - tdist.cdf(abs(stat), n - 1)))
 
