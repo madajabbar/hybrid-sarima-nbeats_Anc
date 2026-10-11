@@ -11,6 +11,8 @@ Original SARIMA+BiLSTM pipeline kept as reference; the **BiLSTM component is rep
 - `reference/` — verbatim copy of the original notebooks (read-only, unmodified).
 - `notebooks/01_baseline_*.ipynb` — original notebooks, paths adapted to run from this repo (Colab/VS Code kernel).
 - `notebooks/02_nbeats_swap.ipynb` — our experiment: SARIMA → residual → N-BEATS hybrid, same split & horizons.
+- `notebooks/03_final_recipe.ipynb` — reads the CSVs in `results/` and prints the final tables (no retraining).
+- `notebooks/04_end_to_end.ipynb` — full pipeline from raw data in one runnable notebook: Box-Cox → SARIMA (weekly) → residual → Ridge correction → gated volume (alpha) → RMSE comparison, step by step with explanations. ~30 s for one pollutant/fold.
 - `results/` — metric tables (CSV).
 
 ## Run
