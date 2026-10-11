@@ -102,9 +102,12 @@ def main(ours_path=OURS, paper_path=PAPER, out_m=OUT_M, out_d=OUT_D, out_md=OUT_
                 ref = x[f"{col_ref}_h{h}"] if col_ref != "sarima_p" else x[f"sarima_h{h}_p"]
                 new = x[f"{col_new}_h{h}"] if col_new != "sarima_p" else x[f"sarima_h{h}_p"]
                 msk = (x[ac].notna() & ref.notna() & new.notna()).values
+                r_ref = rmse(x.loc[msk, ac], ref[msk])
+                r_new = rmse(x.loc[msk, ac], new[msk])
                 _, p = dm(x[ac].values[msk] - np.asarray(ref, float)[msk],
                           x[ac].values[msk] - np.asarray(new, float)[msk], h)
                 dm_recs.append({"target": feature, "horizon": h, "uji": label, "n": int(msk.sum()),
+                                "delta_pct": (r_new / r_ref - 1) * 100,
                                 "dm_p": p, "nyata05": "ya" if (p == p and p < 0.05) else "tidak"})
 
     m, t = pd.DataFrame(recs), pd.DataFrame(dm_recs)
@@ -122,7 +125,9 @@ def main(ours_path=OURS, paper_path=PAPER, out_m=OUT_M, out_d=OUT_D, out_md=OUT_
     print(f"\nkita vs paper(BiLSTM): menang {int((k < 0).sum())}/{len(k)} sel | rata2 {k.mean():+.2f}% "
           f"| terbaik {k.min():+.2f}% | terburuk {k.max():+.2f}%")
     kj = t[t.uji == "kita vs paper(BiLSTM)"]
-    print(f"menang nyata {int(((kj.nyata05=='ya') & (kj.dm_p.notna())).sum())} sel | "
+    sig = kj.dm_p < 0.05
+    print(f"menang nyata (p<0,05 & delta<0): {int(((sig) & (kj.delta_pct < 0)).sum())} sel | "
+          f"kalah nyata (p<0,05 & delta>0): {int(((sig) & (kj.delta_pct > 0)).sum())} sel | "
           f"p terkecil {kj.dm_p.min():.4f}")
 
     lines = ["# Adu final: resep kita vs metode paper (SARIMA + BiLSTM)", "",
@@ -135,10 +140,10 @@ def main(ours_path=OURS, paper_path=PAPER, out_m=OUT_M, out_d=OUT_D, out_md=OUT_
                      f"{x.rmse_paper_hybrid_bilstm:.4f} | {x.rmse_ours_sarima_s7:.4f} | "
                      f"{x.rmse_ours_recipe:.4f} | {x.delta_ours_vs_paper_pct:+.1f}% |")
     lines += ["", "## Uji Diebold-Mariano (p < 0,05 = beda nyata)", "",
-              "| polutan | h | uji | p | nyata |", "|---|---|---|---|---|"]
+              "| polutan | h | uji | delta | p | nyata |", "|---|---|---|---|---|---|"]
     for _, x in t.iterrows():
         p = "n/a" if x.dm_p != x.dm_p else f"{x.dm_p:.4f}"
-        lines.append(f"| {x.target} | {x.horizon} | {x.uji} | {p} | {x.nyata05} |")
+        lines.append(f"| {x.target} | {x.horizon} | {x.uji} | {x.delta_pct:+.2f}% | {p} | {x.nyata05} |")
     open(out_md, "w").write("\n".join(lines) + "\n")
     print(f"\ntabel markdown: {out_md}")
     return 0
