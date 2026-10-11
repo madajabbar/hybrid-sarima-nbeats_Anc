@@ -6,3 +6,4 @@ ray_result*/
 lstm3_tuning/
 notebooks/*.csv
 notebooks/*.png
+results/lstm_folds/

@@ -13,11 +13,19 @@ Original SARIMA+BiLSTM pipeline kept as reference; the **BiLSTM component is rep
 - `notebooks/02_nbeats_swap.ipynb` — our experiment: SARIMA → residual → N-BEATS hybrid, same split & horizons.
 - `notebooks/03_final_recipe.ipynb` — reads the CSVs in `results/` and prints the final tables (no retraining).
 - `notebooks/04_end_to_end.ipynb` — full pipeline from raw data in one runnable notebook: Box-Cox → SARIMA (weekly) → residual → Ridge correction → gated volume (alpha) → RMSE comparison, step by step with explanations. ~30 s for one pollutant/fold.
+- `notebooks/05_bilstm_all_folds.ipynb` — **GPU (Kaggle/Colab)**: runs the reference BiLSTM arm on all 5 folds x 3 pollutants (`scripts/13_bilstm_all_folds.py`, ~45 min on T4), then `scripts/14_vs_bilstm_all_folds.py` produces the head-to-head table vs our recipe on identical folds/origins.
 - `results/` — metric tables (CSV).
 
 ## Run
-VS Code + Colab kernel (T4 GPU) or Jupyter:
-1. `notebooks/01_baseline_bilstm.ipynb` → reproduce BiLSTM baseline
-2. `notebooks/02_nbeats_swap.ipynb` → N-BEATS swap + comparison table
+CPU only (laptop), in order:
+1. `python scripts/12_full_final.py` → frozen recipe, 9 cells x 5 folds (~4 min)
+2. `notebooks/04_end_to_end.ipynb` → step-by-step walkthrough of the same pipeline (~30 s)
+3. `notebooks/03_final_recipe.ipynb` → print final tables from the CSVs (no retraining)
+
+GPU (Kaggle T4 / Colab, ~45 min) — head-to-head vs the reference paper:
+4. `notebooks/05_bilstm_all_folds.ipynb` → reference BiLSTM arm on all folds, then the comparison table
+   (equivalently: `python scripts/13_bilstm_all_folds.py --tune off` then `python scripts/14_vs_bilstm_all_folds.py`)
+
+Original reference notebooks (unchanged): `notebooks/01_baseline_bilstm.ipynb`, `01_baseline_attention_final.ipynb`, `01_baseline_fourier_final.ipynb`, `02_nbeats_swap.ipynb`.
 
 Coursework: Algorithms & Complexity, S2 Informatics, Universitas Nusa Mandiri.
