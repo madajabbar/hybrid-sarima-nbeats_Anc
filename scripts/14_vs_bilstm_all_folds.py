@@ -94,10 +94,10 @@ def main(ours_path=OURS, paper_path=PAPER, out_m=OUT_M, out_d=OUT_D, out_md=OUT_
             recs.append(row)
 
             for label, col_ref, col_new in [
-                ("kita vs paper(BiLSTM)", "final", "hybrid"),
-                ("kita vs paper(SARIMA s12)", "final", "sarima_p"),
-                ("paper: BiLSTM vs SARIMA-nya sendiri", "hybrid", "sarima_p"),
-                ("kita vs SARIMA mingguan kita", "final", "sarima"),
+                ("kita vs paper(BiLSTM)", "hybrid", "final"),
+                ("kita vs paper(SARIMA s12)", "sarima_p", "final"),
+                ("paper: BiLSTM vs SARIMA-nya sendiri", "sarima_p", "hybrid"),
+                ("kita vs SARIMA mingguan kita", "sarima", "final"),
             ]:
                 ref = x[f"{col_ref}_h{h}"] if col_ref != "sarima_p" else x[f"sarima_h{h}_p"]
                 new = x[f"{col_new}_h{h}"] if col_new != "sarima_p" else x[f"sarima_h{h}_p"]
@@ -144,6 +144,15 @@ def main(ours_path=OURS, paper_path=PAPER, out_m=OUT_M, out_d=OUT_D, out_md=OUT_
     for _, x in t.iterrows():
         p = "n/a" if x.dm_p != x.dm_p else f"{x.dm_p:.4f}"
         lines.append(f"| {x.target} | {x.horizon} | {x.uji} | {x.delta_pct:+.2f}% | {p} | {x.nyata05} |")
+    lines += ["",
+              "Catatan: selisih pada uji DM dihitung hanya pada origin yang berpasangan (kedua lengan "
+              "sama-sama tersedia), sehingga bisa sedikit berbeda dari selisih kolom RMSE di tabel atas "
+              "(yang memakai seluruh origin tiap lengan).",
+              "",
+              f"Ringkasan: resep kita vs paper+BiLSTM menang {int((k < 0).sum())}/{len(k)} sel "
+              f"(rata-rata {k.mean():+.2f}%), menang nyata {int(((sig) & (kj.delta_pct < 0)).sum())} sel, "
+              f"kalah nyata {int(((sig) & (kj.delta_pct > 0)).sum())} sel. "
+              "Lengan BiLSTM paper tidak memperbaiki SARIMA-nya sendiri secara nyata di sel mana pun."]
     open(out_md, "w").write("\n".join(lines) + "\n")
     print(f"\ntabel markdown: {out_md}")
     return 0
