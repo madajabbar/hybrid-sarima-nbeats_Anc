@@ -249,3 +249,32 @@ with open(os.path.join(REPO, "04_Naskah", "tables.json"), "w") as fh:
     json.dump(meta, fh, indent=1)
 print("figures:", sorted(os.listdir(OUTD)))
 print("lambda:", {k: round(v, 4) for k, v in lam.items()})
+
+# ---------- FIG0: arsitektur metode yang diusulkan ----------
+import matplotlib.patches as mp
+fig, ax = plt.subplots(figsize=(7.0, 2.9))
+ax.axis("off")
+
+def box(x, y, w, h, txt, fc, fs=8.5, ec="#37474F"):
+    ax.add_patch(mp.FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.02",
+                 fc=fc, ec=ec, lw=1.0))
+    ax.text(x + w / 2, y + h / 2, txt, ha="center", va="center", fontsize=fs, color="#10202E")
+
+def arr(x1, y1, x2, y2):
+    ax.annotate("", xy=(x2, y2), xytext=(x1, y1),
+                arrowprops=dict(arrowstyle="-|>", color="#37474F", lw=1.0))
+
+box(0.00, 0.38, 0.17, 0.26, "Daily Box-Cox\nseries\n(PM10, PM2.5, NO2)", "#EDF2F7")
+box(0.25, 0.66, 0.30, 0.26, "LightGBM branch\nlags 1-7, MA7/30, std30,\nlag-365, calendar flags", "#CFE3F5")
+box(0.25, 0.10, 0.30, 0.26, "Theta branch\nfirst differences +\nweekly decomposition", "#FBE3D6")
+box(0.63, 0.38, 0.16, 0.26, "Equal-weight\naverage", "#EDF2F7")
+box(0.83, 0.38, 0.15, 0.26, "Forecast\nh = 1, 7, 30", "#EDF2F7")
+arr(0.17, 0.51, 0.25, 0.79)
+arr(0.17, 0.51, 0.25, 0.23)
+arr(0.55, 0.79, 0.63, 0.53)
+arr(0.55, 0.23, 0.63, 0.49)
+arr(0.79, 0.51, 0.83, 0.51)
+ax.set_xlim(-0.01, 0.99); ax.set_ylim(0, 1)
+fig.tight_layout()
+fig.savefig(os.path.join(OUTD, "fig0_architecture.png"))
+print("fig0 ok")
