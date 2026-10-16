@@ -1,0 +1,388 @@
+lipatan 1/5 selesai
+lipatan 2/5 selesai
+lipatan 3/5 selesai
+lipatan 4/5 selesai
+lipatan 5/5 selesai
+ramalan fase 20 tersimpan: (360, 27)
+gabungan: 354 | per fitur: {'NO2': 118, 'PM10': 118, 'PM25': 118}
+
+== PAPAN PERINGKAT (RMSE Box-Cox) ==
+model           SARIMA_mingguan  arima_nonmusiman  ens_lgbm_ets  ens_lgbm_rf  ens_lgbm_theta  ens_lgbmwk_theta  ens_trio     ets  fourier_ols  knn_langsung  lgbm_gate  lgbm_langsung  lgbm_mingguan  naive7  paper_hybrid  paper_sarima_s12  rf_langsung  ridge_gate  ridge_langsung  stl_ets  svr_langsung   theta     ucm
+target horizon                                                                                                                                                                                                                                                                                                              
+NO2    1                 0.6007            0.6756        0.7488       0.8135          0.7363            0.7091    0.7452  0.6648       0.8248        0.7764     0.6016         0.8853         0.8077  0.7761        0.6666            0.6756       0.8051      0.5925          0.7332   0.6771        0.7379  0.6422  0.6619
+       7                 0.8889            0.9225        0.9579       0.9560          0.9650            0.9352    0.9442  0.9324       0.9323        0.9093     0.8848         1.0213         0.9705  1.0738        0.9331            0.9225       0.9218      0.9017          0.8979   1.0103        0.9370  0.9471  0.9427
+       30                0.7043            0.7322        0.6923       0.6915          0.6988            0.6833    0.6820  0.7077       0.6383        0.6276     0.6994         0.7657         0.7291  0.9548        0.7476            0.7374       0.6848      0.7040          0.6448   0.9617        0.7037  0.7192  0.7004
+PM10   1                 0.1148            0.1175        0.1060       0.1187          0.1066            0.1136    0.1174  0.1236       0.1502        0.1421     0.1134         0.1021         0.1150  0.1684        0.1193            0.1175       0.1450      0.1114          0.1467   0.1439        0.1400  0.1262  0.1260
+       7                 0.1525            0.1541        0.1383       0.1363          0.1395            0.1377    0.1384  0.1577       0.1525        0.1515     0.1524         0.1371         0.1311  0.1648        0.1539            0.1541       0.1500      0.1499          0.1524   0.1670        0.1683  0.1602  0.1626
+       30                0.1518            0.1476        0.1390       0.1311          0.1383            0.1373    0.1316  0.1590       0.1386        0.1301     0.1503         0.1406         0.1387  0.1839        0.1533            0.1490       0.1299      0.1514          0.1311   0.1811        0.1328  0.1570  0.1569
+PM25   1                 0.0654            0.0654        0.0613       0.0679          0.0616            0.0668    0.0655  0.0681       0.0818        0.0799     0.0646         0.0636         0.0717  0.0942        0.0652            0.0654       0.0761      0.0638          0.0772   0.0853        0.0776  0.0687  0.0687
+       7                 0.0738            0.0738        0.0724       0.0686          0.0726            0.0731    0.0708  0.0852       0.0745        0.0707     0.0739         0.0683         0.0708  0.0950        0.0736            0.0738       0.0722      0.0753          0.0746   0.0924        0.0833  0.0855  0.0876
+       30                0.0899            0.0901        0.0722       0.0742          0.0725            0.0755    0.0742  0.0862       0.0770        0.0774     0.0899         0.0708         0.0737  0.1079        0.0904            0.0900       0.0845      0.0891          0.0688   0.1026        0.0830  0.0866  0.0841
+
+== SKOR GABUNGAN 9 SEL (% vs SARIMA mingguan kita) ==
+model
+ens_lgbm_ets        -2.49
+ens_lgbm_theta      -2.32
+ens_lgbmwk_theta    -1.65
+ens_trio            -1.61
+ridge_gate          -0.68
+lgbm_gate           -0.49
+ens_lgbm_rf         -0.04
+SARIMA_mingguan      0.00
+lgbm_langsung        1.22
+lgbm_mingguan        1.36
+arima_nonmusiman     2.35
+paper_sarima_s12     2.53
+ridge_langsung       2.71
+paper_hybrid         3.11
+knn_langsung         3.73
+ets                  5.25
+theta                5.70
+ucm                  5.87
+rf_langsung          5.92
+fourier_ols          7.40
+svr_langsung         7.97
+stl_ets             20.77
+naive7              28.26
+
+== SKOR GABUNGAN 9 SEL (% vs metode lengkap paper) ==
+model
+ens_lgbm_ets        -5.64
+ens_lgbm_theta      -5.46
+ens_trio            -4.76
+ens_lgbmwk_theta    -4.73
+ridge_gate          -3.56
+lgbm_gate           -3.39
+ens_lgbm_rf         -3.34
+SARIMA_mingguan     -2.90
+lgbm_langsung       -2.27
+lgbm_mingguan       -1.96
+arima_nonmusiman    -0.74
+paper_sarima_s12    -0.57
+ridge_langsung      -0.47
+paper_hybrid         0.00
+knn_langsung         0.49
+ets                  2.17
+rf_langsung          2.56
+theta                2.63
+ucm                  2.78
+fourier_ols          4.02
+svr_langsung         4.71
+stl_ets             17.28
+naive7              24.47
+
+== MENANG/9 lawan metode lengkap paper (lower RMSE) ==
+  ridge_gate: 8/9
+  lgbm_gate: 8/9
+  SARIMA_mingguan: 7/9
+  ens_lgbm_theta: 7/9
+  ens_lgbm_ets: 7/9
+  lgbm_langsung: 6/9
+  knn_langsung: 6/9
+  lgbm_mingguan: 6/9
+  rf_langsung: 6/9
+  ens_lgbm_rf: 6/9
+  ens_trio: 6/9
+  ens_lgbmwk_theta: 6/9
+  paper_sarima_s12: 5/9
+  ridge_langsung: 5/9
+  fourier_ols: 5/9
+  arima_nonmusiman: 5/9
+  ets: 4/9
+  svr_langsung: 3/9
+  ucm: 3/9
+  theta: 3/9
+  paper_hybrid: 0/9
+  stl_ets: 0/9
+  naive7: 0/9
+
+== DM lengan baru/ensemble vs metode lengkap paper & vs SARIMA kita (p<0.05 = nyata) ==
+target  horizon               vs            base  rmse_ratio   dm_p   n
+   NO2        1    lgbm_langsung SARIMA_mingguan      0.4738 0.0000 118
+   NO2        1     svr_langsung SARIMA_mingguan      0.2284 0.0000 118
+   NO2        1     knn_langsung SARIMA_mingguan      0.2925 0.0000 118
+   NO2        1   ridge_langsung SARIMA_mingguan      0.2207 0.0000 118
+   NO2        1    lgbm_mingguan SARIMA_mingguan      0.3445 0.0000 118
+   NO2        1      fourier_ols SARIMA_mingguan      0.3731 0.0000 118
+   NO2        1              ucm SARIMA_mingguan      0.1018 0.0019 118
+   NO2        1          stl_ets SARIMA_mingguan      0.1272 0.0666 118
+   NO2        1            theta SARIMA_mingguan      0.0691 0.0383 118
+   NO2        1      rf_langsung SARIMA_mingguan      0.3403 0.0000 118
+   NO2        1              ets SARIMA_mingguan      0.1067 0.0010 118
+   NO2        1   ens_lgbm_theta SARIMA_mingguan      0.2257 0.0002 118
+   NO2        1     ens_lgbm_ets SARIMA_mingguan      0.2465 0.0001 118
+   NO2        1      ens_lgbm_rf SARIMA_mingguan      0.3542 0.0000 118
+   NO2        1         ens_trio SARIMA_mingguan      0.2405 0.0000 118
+   NO2        1 ens_lgbmwk_theta SARIMA_mingguan      0.1805 0.0000 118
+   NO2        1    lgbm_langsung    paper_hybrid      0.3280 0.0003 118
+   NO2        1     svr_langsung    paper_hybrid      0.1069 0.0238 118
+   NO2        1     knn_langsung    paper_hybrid      0.1647 0.0000 118
+   NO2        1   ridge_langsung    paper_hybrid      0.0999 0.0016 118
+   NO2        1    lgbm_mingguan    paper_hybrid      0.2116 0.0001 118
+   NO2        1      fourier_ols    paper_hybrid      0.2373 0.0003 118
+   NO2        1              ucm    paper_hybrid     -0.0071 0.8357 118
+   NO2        1          stl_ets    paper_hybrid      0.0157 0.8227 118
+   NO2        1            theta    paper_hybrid     -0.0366 0.3125 118
+   NO2        1      rf_langsung    paper_hybrid      0.2078 0.0000 118
+   NO2        1              ets    paper_hybrid     -0.0028 0.9354 118
+   NO2        1   ens_lgbm_theta    paper_hybrid      0.1045 0.0543 118
+   NO2        1     ens_lgbm_ets    paper_hybrid      0.1232 0.0234 118
+   NO2        1      ens_lgbm_rf    paper_hybrid      0.2203 0.0001 118
+   NO2        1         ens_trio    paper_hybrid      0.1178 0.0081 118
+   NO2        1 ens_lgbmwk_theta    paper_hybrid      0.0638 0.1380 118
+   NO2        7    lgbm_langsung SARIMA_mingguan      0.1441 0.0000 117
+   NO2        7     svr_langsung SARIMA_mingguan      0.0542 0.3658 118
+   NO2        7     knn_langsung SARIMA_mingguan      0.0230 0.5610 118
+   NO2        7   ridge_langsung SARIMA_mingguan      0.0101 0.6815 118
+   NO2        7    lgbm_mingguan SARIMA_mingguan      0.0918 0.0033 118
+   NO2        7      fourier_ols SARIMA_mingguan      0.0488 0.1679 118
+   NO2        7              ucm SARIMA_mingguan      0.0606 0.0000 118
+   NO2        7          stl_ets SARIMA_mingguan      0.1366 0.0000 118
+   NO2        7            theta SARIMA_mingguan      0.0656 0.0000 118
+   NO2        7      rf_langsung SARIMA_mingguan      0.0370 0.0525 118
+   NO2        7              ets SARIMA_mingguan      0.0490 0.0000 118
+   NO2        7   ens_lgbm_theta SARIMA_mingguan      0.0811 0.0000 117
+   NO2        7     ens_lgbm_ets SARIMA_mingguan      0.0732 0.0000 117
+   NO2        7      ens_lgbm_rf SARIMA_mingguan      0.0710 0.0000 117
+   NO2        7         ens_trio SARIMA_mingguan      0.0578 0.0001 117
+   NO2        7 ens_lgbmwk_theta SARIMA_mingguan      0.0521 0.0010 118
+   NO2        7    lgbm_langsung    paper_hybrid      0.0899 0.0010 117
+   NO2        7     svr_langsung    paper_hybrid      0.0042 0.9521 118
+   NO2        7     knn_langsung    paper_hybrid     -0.0256 0.6155 118
+   NO2        7   ridge_langsung    paper_hybrid     -0.0378 0.2857 118
+   NO2        7    lgbm_mingguan    paper_hybrid      0.0400 0.2841 118
+   NO2        7      fourier_ols    paper_hybrid     -0.0010 0.9835 118
+   NO2        7              ucm    paper_hybrid      0.0103 0.6393 118
+   NO2        7          stl_ets    paper_hybrid      0.0827 0.0207 118
+   NO2        7            theta    paper_hybrid      0.0150 0.4368 118
+   NO2        7      rf_langsung    paper_hybrid     -0.0122 0.3588 118
+   NO2        7              ets    paper_hybrid     -0.0008 0.9732 118
+   NO2        7   ens_lgbm_theta    paper_hybrid      0.0299 0.2176 117
+   NO2        7     ens_lgbm_ets    paper_hybrid      0.0223 0.3833 117
+   NO2        7      ens_lgbm_rf    paper_hybrid      0.0203 0.2929 117
+   NO2        7         ens_trio    paper_hybrid      0.0077 0.6944 117
+   NO2        7 ens_lgbmwk_theta    paper_hybrid      0.0022 0.9338 118
+   NO2       30    lgbm_langsung SARIMA_mingguan      0.0837 0.0459 112
+   NO2       30     svr_langsung SARIMA_mingguan     -0.0142 0.5930 113
+   NO2       30     knn_langsung SARIMA_mingguan     -0.1197 0.0000 113
+   NO2       30   ridge_langsung SARIMA_mingguan     -0.0881 0.0000 113
+   NO2       30    lgbm_mingguan SARIMA_mingguan      0.0284 0.4980 113
+   NO2       30      fourier_ols SARIMA_mingguan     -0.1031 0.0000 113
+   NO2       30              ucm SARIMA_mingguan     -0.0159 0.0517 113
+   NO2       30          stl_ets SARIMA_mingguan      0.3631 0.0000 113
+   NO2       30            theta SARIMA_mingguan      0.0134 0.0723 113
+   NO2       30      rf_langsung SARIMA_mingguan     -0.0298 0.0423 113
+   NO2       30              ets SARIMA_mingguan     -0.0071 0.3412 113
+   NO2       30   ens_lgbm_theta SARIMA_mingguan     -0.0109 0.6993 112
+   NO2       30     ens_lgbm_ets SARIMA_mingguan     -0.0202 0.4759 112
+   NO2       30      ens_lgbm_rf SARIMA_mingguan     -0.0213 0.4663 112
+   NO2       30         ens_trio SARIMA_mingguan     -0.0347 0.1335 112
+   NO2       30 ens_lgbmwk_theta SARIMA_mingguan     -0.0390 0.1728 113
+   NO2       30    lgbm_langsung    paper_hybrid      0.0210 0.5058 112
+   NO2       30     svr_langsung    paper_hybrid     -0.0713 0.0233 113
+   NO2       30     knn_langsung    paper_hybrid     -0.1706 0.0000 113
+   NO2       30   ridge_langsung    paper_hybrid     -0.1409 0.0000 113
+   NO2       30    lgbm_mingguan    paper_hybrid     -0.0312 0.3571 113
+   NO2       30      fourier_ols    paper_hybrid     -0.1550 0.0000 113
+   NO2       30              ucm    paper_hybrid     -0.0729 0.0000 113
+   NO2       30          stl_ets    paper_hybrid      0.2842 0.0000 113
+   NO2       30            theta    paper_hybrid     -0.0453 0.0000 113
+   NO2       30      rf_langsung    paper_hybrid     -0.0860 0.0000 113
+   NO2       30              ets    paper_hybrid     -0.0646 0.0000 113
+   NO2       30   ens_lgbm_theta    paper_hybrid     -0.0682 0.0003 112
+   NO2       30     ens_lgbm_ets    paper_hybrid     -0.0769 0.0001 112
+   NO2       30      ens_lgbm_rf    paper_hybrid     -0.0779 0.0002 112
+   NO2       30         ens_trio    paper_hybrid     -0.0906 0.0000 112
+   NO2       30 ens_lgbmwk_theta    paper_hybrid     -0.0946 0.0000 113
+  PM10        1    lgbm_langsung SARIMA_mingguan     -0.1112 0.1551 118
+  PM10        1     svr_langsung SARIMA_mingguan      0.2188 0.0005 118
+  PM10        1     knn_langsung SARIMA_mingguan      0.2374 0.0000 118
+  PM10        1   ridge_langsung SARIMA_mingguan      0.2777 0.0000 118
+  PM10        1    lgbm_mingguan SARIMA_mingguan      0.0014 0.9791 118
+  PM10        1      fourier_ols SARIMA_mingguan      0.3083 0.0000 118
+  PM10        1              ucm SARIMA_mingguan      0.0976 0.0043 118
+  PM10        1          stl_ets SARIMA_mingguan      0.2535 0.0011 118
+  PM10        1            theta SARIMA_mingguan      0.0992 0.0035 118
+  PM10        1      rf_langsung SARIMA_mingguan      0.2625 0.0000 118
+  PM10        1              ets SARIMA_mingguan      0.0765 0.0211 118
+  PM10        1   ens_lgbm_theta SARIMA_mingguan     -0.0713 0.1061 118
+  PM10        1     ens_lgbm_ets SARIMA_mingguan     -0.0773 0.0804 118
+  PM10        1      ens_lgbm_rf SARIMA_mingguan      0.0340 0.3922 118
+  PM10        1         ens_trio SARIMA_mingguan      0.0226 0.4564 118
+  PM10        1 ens_lgbmwk_theta SARIMA_mingguan     -0.0109 0.7198 118
+  PM10        1    lgbm_langsung    paper_hybrid     -0.1448 0.0603 118
+  PM10        1     svr_langsung    paper_hybrid      0.1728 0.0052 118
+  PM10        1     knn_langsung    paper_hybrid      0.1907 0.0000 118
+  PM10        1   ridge_langsung    paper_hybrid      0.2295 0.0000 118
+  PM10        1    lgbm_mingguan    paper_hybrid     -0.0365 0.4872 118
+  PM10        1      fourier_ols    paper_hybrid      0.2588 0.0000 118
+  PM10        1              ucm    paper_hybrid      0.0561 0.0518 118
+  PM10        1          stl_ets    paper_hybrid      0.2061 0.0032 118
+  PM10        1            theta    paper_hybrid      0.0576 0.0438 118
+  PM10        1      rf_langsung    paper_hybrid      0.2148 0.0000 118
+  PM10        1              ets    paper_hybrid      0.0358 0.2014 118
+  PM10        1   ens_lgbm_theta    paper_hybrid     -0.1064 0.0142 118
+  PM10        1     ens_lgbm_ets    paper_hybrid     -0.1121 0.0101 118
+  PM10        1      ens_lgbm_rf    paper_hybrid     -0.0050 0.9009 118
+  PM10        1         ens_trio    paper_hybrid     -0.0161 0.5922 118
+  PM10        1 ens_lgbmwk_theta    paper_hybrid     -0.0482 0.1210 118
+  PM10        7    lgbm_langsung SARIMA_mingguan     -0.1032 0.1171 117
+  PM10        7     svr_langsung SARIMA_mingguan      0.1039 0.0330 118
+  PM10        7     knn_langsung SARIMA_mingguan     -0.0062 0.7701 118
+  PM10        7   ridge_langsung SARIMA_mingguan     -0.0004 0.9840 118
+  PM10        7    lgbm_mingguan SARIMA_mingguan     -0.1401 0.0374 118
+  PM10        7      fourier_ols SARIMA_mingguan      0.0001 0.9959 118
+  PM10        7              ucm SARIMA_mingguan      0.0666 0.0578 118
+  PM10        7          stl_ets SARIMA_mingguan      0.0954 0.0335 118
+  PM10        7            theta SARIMA_mingguan      0.0509 0.1325 118
+  PM10        7      rf_langsung SARIMA_mingguan     -0.0162 0.3241 118
+  PM10        7              ets SARIMA_mingguan      0.0341 0.3290 118
+  PM10        7   ens_lgbm_theta SARIMA_mingguan     -0.0875 0.0488 117
+  PM10        7     ens_lgbm_ets SARIMA_mingguan     -0.0950 0.0409 117
+  PM10        7      ens_lgbm_rf SARIMA_mingguan     -0.1084 0.0057 117
+  PM10        7         ens_trio SARIMA_mingguan     -0.0947 0.0041 117
+  PM10        7 ens_lgbmwk_theta SARIMA_mingguan     -0.0967 0.0244 118
+  PM10        7    lgbm_langsung    paper_hybrid     -0.1108 0.0880 117
+  PM10        7     svr_langsung    paper_hybrid      0.0939 0.0600 118
+  PM10        7     knn_langsung    paper_hybrid     -0.0153 0.4674 118
+  PM10        7   ridge_langsung    paper_hybrid     -0.0095 0.6774 118
+  PM10        7    lgbm_mingguan    paper_hybrid     -0.1479 0.0267 118
+  PM10        7      fourier_ols    paper_hybrid     -0.0090 0.6419 118
+  PM10        7              ucm    paper_hybrid      0.0569 0.1121 118
+  PM10        7          stl_ets    paper_hybrid      0.0854 0.0668 118
+  PM10        7            theta    paper_hybrid      0.0413 0.2302 118
+  PM10        7      rf_langsung    paper_hybrid     -0.0251 0.1833 118
+  PM10        7              ets    paper_hybrid      0.0247 0.4823 118
+  PM10        7   ens_lgbm_theta    paper_hybrid     -0.0953 0.0295 117
+  PM10        7     ens_lgbm_ets    paper_hybrid     -0.1027 0.0244 117
+  PM10        7      ens_lgbm_rf    paper_hybrid     -0.1159 0.0030 117
+  PM10        7         ens_trio    paper_hybrid     -0.1024 0.0020 117
+  PM10        7 ens_lgbmwk_theta    paper_hybrid     -0.1049 0.0146 118
+  PM10       30    lgbm_langsung SARIMA_mingguan     -0.0775 0.0038 112
+  PM10       30     svr_langsung SARIMA_mingguan     -0.1196 0.0001 113
+  PM10       30     knn_langsung SARIMA_mingguan     -0.1328 0.0000 113
+  PM10       30   ridge_langsung SARIMA_mingguan     -0.1264 0.0000 113
+  PM10       30    lgbm_mingguan SARIMA_mingguan     -0.0735 0.0712 113
+  PM10       30      fourier_ols SARIMA_mingguan     -0.0787 0.0573 113
+  PM10       30              ucm SARIMA_mingguan      0.0303 0.3396 113
+  PM10       30          stl_ets SARIMA_mingguan      0.1903 0.0004 113
+  PM10       30            theta SARIMA_mingguan      0.0353 0.2078 113
+  PM10       30      rf_langsung SARIMA_mingguan     -0.1385 0.0000 113
+  PM10       30              ets SARIMA_mingguan      0.0510 0.1626 113
+  PM10       30   ens_lgbm_theta SARIMA_mingguan     -0.0924 0.0000 112
+  PM10       30     ens_lgbm_ets SARIMA_mingguan     -0.0877 0.0000 112
+  PM10       30      ens_lgbm_rf SARIMA_mingguan     -0.1398 0.0000 112
+  PM10       30         ens_trio SARIMA_mingguan     -0.1361 0.0000 112
+  PM10       30 ens_lgbmwk_theta SARIMA_mingguan     -0.0878 0.0000 113
+  PM10       30    lgbm_langsung    paper_hybrid     -0.0859 0.0011 112
+  PM10       30     svr_langsung    paper_hybrid     -0.1282 0.0000 113
+  PM10       30     knn_langsung    paper_hybrid     -0.1413 0.0000 113
+  PM10       30   ridge_langsung    paper_hybrid     -0.1350 0.0000 113
+  PM10       30    lgbm_mingguan    paper_hybrid     -0.0826 0.0341 113
+  PM10       30      fourier_ols    paper_hybrid     -0.0878 0.0246 113
+  PM10       30              ucm    paper_hybrid      0.0201 0.5121 113
+  PM10       30          stl_ets    paper_hybrid      0.1786 0.0010 113
+  PM10       30            theta    paper_hybrid      0.0251 0.3585 113
+  PM10       30      rf_langsung    paper_hybrid     -0.1469 0.0000 113
+  PM10       30              ets    paper_hybrid      0.0407 0.2627 113
+  PM10       30   ens_lgbm_theta    paper_hybrid     -0.1007 0.0000 112
+  PM10       30     ens_lgbm_ets    paper_hybrid     -0.0961 0.0000 112
+  PM10       30      ens_lgbm_rf    paper_hybrid     -0.1476 0.0000 112
+  PM10       30         ens_trio    paper_hybrid     -0.1441 0.0000 112
+  PM10       30 ens_lgbmwk_theta    paper_hybrid     -0.0968 0.0000 113
+  PM25        1    lgbm_langsung SARIMA_mingguan     -0.0276 0.5828 118
+  PM25        1     svr_langsung SARIMA_mingguan      0.1866 0.0028 118
+  PM25        1     knn_langsung SARIMA_mingguan      0.2220 0.0002 118
+  PM25        1   ridge_langsung SARIMA_mingguan      0.1809 0.0000 118
+  PM25        1    lgbm_mingguan SARIMA_mingguan      0.0968 0.0068 118
+  PM25        1      fourier_ols SARIMA_mingguan      0.2512 0.0001 118
+  PM25        1              ucm SARIMA_mingguan      0.0506 0.1516 118
+  PM25        1          stl_ets SARIMA_mingguan      0.3038 0.0000 118
+  PM25        1            theta SARIMA_mingguan      0.0511 0.1448 118
+  PM25        1      rf_langsung SARIMA_mingguan      0.1638 0.0035 118
+  PM25        1              ets SARIMA_mingguan      0.0413 0.2461 118
+  PM25        1   ens_lgbm_theta SARIMA_mingguan     -0.0577 0.0289 118
+  PM25        1     ens_lgbm_ets SARIMA_mingguan     -0.0618 0.0212 118
+  PM25        1      ens_lgbm_rf SARIMA_mingguan      0.0386 0.4233 118
+  PM25        1         ens_trio SARIMA_mingguan      0.0013 0.9635 118
+  PM25        1 ens_lgbmwk_theta SARIMA_mingguan      0.0213 0.3833 118
+  PM25        1    lgbm_langsung    paper_hybrid     -0.0253 0.6487 118
+  PM25        1     svr_langsung    paper_hybrid      0.1893 0.0048 118
+  PM25        1     knn_langsung    paper_hybrid      0.2248 0.0003 118
+  PM25        1   ridge_langsung    paper_hybrid      0.1836 0.0000 118
+  PM25        1    lgbm_mingguan    paper_hybrid      0.0993 0.0132 118
+  PM25        1      fourier_ols    paper_hybrid      0.2541 0.0001 118
+  PM25        1              ucm    paper_hybrid      0.0530 0.0953 118
+  PM25        1          stl_ets    paper_hybrid      0.3068 0.0000 118
+  PM25        1            theta    paper_hybrid      0.0536 0.0899 118
+  PM25        1      rf_langsung    paper_hybrid      0.1665 0.0061 118
+  PM25        1              ets    paper_hybrid      0.0437 0.1764 118
+  PM25        1   ens_lgbm_theta    paper_hybrid     -0.0555 0.0595 118
+  PM25        1     ens_lgbm_ets    paper_hybrid     -0.0597 0.0471 118
+  PM25        1      ens_lgbm_rf    paper_hybrid      0.0410 0.4465 118
+  PM25        1         ens_trio    paper_hybrid      0.0037 0.9147 118
+  PM25        1 ens_lgbmwk_theta    paper_hybrid      0.0236 0.3487 118
+  PM25        7    lgbm_langsung SARIMA_mingguan     -0.0765 0.1138 117
+  PM25        7     svr_langsung SARIMA_mingguan      0.1288 0.0827 118
+  PM25        7     knn_langsung SARIMA_mingguan     -0.0419 0.0734 118
+  PM25        7   ridge_langsung SARIMA_mingguan      0.0108 0.6932 118
+  PM25        7    lgbm_mingguan SARIMA_mingguan     -0.0408 0.4373 118
+  PM25        7      fourier_ols SARIMA_mingguan      0.0094 0.6605 118
+  PM25        7              ucm SARIMA_mingguan      0.1879 0.0000 118
+  PM25        7          stl_ets SARIMA_mingguan      0.2526 0.0000 118
+  PM25        7            theta SARIMA_mingguan      0.1586 0.0001 118
+  PM25        7      rf_langsung SARIMA_mingguan     -0.0220 0.5411 118
+  PM25        7              ets SARIMA_mingguan      0.1546 0.0001 118
+  PM25        7   ens_lgbm_theta SARIMA_mingguan     -0.0190 0.6222 117
+  PM25        7     ens_lgbm_ets SARIMA_mingguan     -0.0209 0.5833 117
+  PM25        7      ens_lgbm_rf SARIMA_mingguan     -0.0731 0.0618 117
+  PM25        7         ens_trio SARIMA_mingguan     -0.0426 0.2383 117
+  PM25        7 ens_lgbmwk_theta SARIMA_mingguan     -0.0089 0.8387 118
+  PM25        7    lgbm_langsung    paper_hybrid     -0.0743 0.1230 117
+  PM25        7     svr_langsung    paper_hybrid      0.1311 0.0803 118
+  PM25        7     knn_langsung    paper_hybrid     -0.0400 0.0985 118
+  PM25        7   ridge_langsung    paper_hybrid      0.0127 0.6433 118
+  PM25        7    lgbm_mingguan    paper_hybrid     -0.0389 0.4613 118
+  PM25        7      fourier_ols    paper_hybrid      0.0114 0.6067 118
+  PM25        7              ucm    paper_hybrid      0.1903 0.0000 118
+  PM25        7          stl_ets    paper_hybrid      0.2551 0.0000 118
+  PM25        7            theta    paper_hybrid      0.1608 0.0001 118
+  PM25        7      rf_langsung    paper_hybrid     -0.0201 0.5855 118
+  PM25        7              ets    paper_hybrid      0.1568 0.0001 118
+  PM25        7   ens_lgbm_theta    paper_hybrid     -0.0167 0.6612 117
+  PM25        7     ens_lgbm_ets    paper_hybrid     -0.0186 0.6208 117
+  PM25        7      ens_lgbm_rf    paper_hybrid     -0.0709 0.0712 117
+  PM25        7         ens_trio    paper_hybrid     -0.0403 0.2625 117
+  PM25        7 ens_lgbmwk_theta    paper_hybrid     -0.0070 0.8729 118
+  PM25       30    lgbm_langsung SARIMA_mingguan     -0.2168 0.0000 112
+  PM25       30     svr_langsung SARIMA_mingguan     -0.0764 0.0060 113
+  PM25       30     knn_langsung SARIMA_mingguan     -0.1421 0.0000 113
+  PM25       30   ridge_langsung SARIMA_mingguan     -0.2312 0.0000 113
+  PM25       30    lgbm_mingguan SARIMA_mingguan     -0.1748 0.0000 113
+  PM25       30      fourier_ols SARIMA_mingguan     -0.1420 0.0011 113
+  PM25       30              ucm SARIMA_mingguan     -0.0702 0.0008 113
+  PM25       30          stl_ets SARIMA_mingguan      0.1359 0.0114 113
+  PM25       30            theta SARIMA_mingguan     -0.0388 0.0229 113
+  PM25       30      rf_langsung SARIMA_mingguan     -0.0710 0.0000 113
+  PM25       30              ets SARIMA_mingguan     -0.0429 0.0397 113
+  PM25       30   ens_lgbm_theta SARIMA_mingguan     -0.1972 0.0000 112
+  PM25       30     ens_lgbm_ets SARIMA_mingguan     -0.2011 0.0000 112
+  PM25       30      ens_lgbm_rf SARIMA_mingguan     -0.1789 0.0000 112
+  PM25       30         ens_trio SARIMA_mingguan     -0.1785 0.0000 112
+  PM25       30 ens_lgbmwk_theta SARIMA_mingguan     -0.1608 0.0000 113
+  PM25       30    lgbm_langsung    paper_hybrid     -0.2205 0.0000 112
+  PM25       30     svr_langsung    paper_hybrid     -0.0807 0.0030 113
+  PM25       30     knn_langsung    paper_hybrid     -0.1461 0.0000 113
+  PM25       30   ridge_langsung    paper_hybrid     -0.2347 0.0000 113
+  PM25       30    lgbm_mingguan    paper_hybrid     -0.1787 0.0000 113
+  PM25       30      fourier_ols    paper_hybrid     -0.1460 0.0010 113
+  PM25       30              ucm    paper_hybrid     -0.0746 0.0002 113
+  PM25       30          stl_ets    paper_hybrid      0.1306 0.0118 113
+  PM25       30            theta    paper_hybrid     -0.0432 0.0064 113
+  PM25       30      rf_langsung    paper_hybrid     -0.0753 0.0000 113
+  PM25       30              ets    paper_hybrid     -0.0474 0.0148 113
+  PM25       30   ens_lgbm_theta    paper_hybrid     -0.2009 0.0000 112
+  PM25       30     ens_lgbm_ets    paper_hybrid     -0.2048 0.0000 112
+  PM25       30      ens_lgbm_rf    paper_hybrid     -0.1827 0.0000 112
+  PM25       30         ens_trio    paper_hybrid     -0.1823 0.0000 112
+  PM25       30 ens_lgbmwk_theta    paper_hybrid     -0.1647 0.0000 113
