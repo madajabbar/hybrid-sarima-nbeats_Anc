@@ -130,7 +130,7 @@ p = para("MDPI_1.3_authornames")
 add_run(p, "Madajabbar Palapa Hakim ")
 add_run(p, "1", sup=True)
 p = para("MDPI_1.6_affiliation")
-add_run(p, "1\tGraduate Program [AFFILIATION TO BE CONFIRMED]; madajabbar22@gmail.com")
+add_run(p, "1\tMaster of Informatics Engineering, Universitas Nusa Mandiri; madajabbar22@gmail.com")
 para("MDPI_1.6_affiliation", "*\tCorrespondence: madajabbar22@gmail.com")
 para("MDPI_1.4_history", "Received: to be completed; Accepted: to be completed; Published: to be completed")
 para("MDPI_1.7_abstract",
