@@ -1,0 +1,10 @@
+target,horizon,pilih
+NO2,1,ridge_gate
+NO2,7,SARIMA
+NO2,30,ets
+PM10,1,ridge_gate
+PM10,7,lgbm_langsung
+PM10,30,ets
+PM25,1,ridge_gate
+PM25,7,lgbm_langsung
+PM25,30,lgbm_langsung
