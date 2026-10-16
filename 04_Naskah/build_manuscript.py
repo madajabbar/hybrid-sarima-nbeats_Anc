@@ -7,10 +7,10 @@ import csv
 import json
 import os
 from docx import Document
-from docx.shared import Pt, Inches
+from docx.shared import Pt, Inches, Twips
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import parse_xml
-from docx.oxml.ns import nsdecls
+from docx.oxml.ns import nsdecls, qn
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HERE = os.path.join(BASE, "04_Naskah")
@@ -98,6 +98,15 @@ def mdpi_table(caption, headers, rows, widths, bold_col=None):
     t = doc.add_table(rows=1, cols=len(headers))
     t.style = doc.styles["MDPI_table"]
     tbl_borders(t)
+    t.autofit = False
+    # insert tblW/jc/tblInd right after tblStyle to keep schema-legal order
+    _style = t._tbl.tblPr.find(qn("w:tblStyle"))
+    for off, xml in enumerate([
+        f'<w:tblW {nsdecls("w")} w:w="10466" w:type="dxa"/>',
+        f'<w:jc {nsdecls("w")} w:val="left"/>',
+        f'<w:tblInd {nsdecls("w")} w:w="0" w:type="dxa"/>',
+    ]):
+        t._tbl.tblPr.insert(off + (1 if _style is not None else 0), parse_xml(xml))
     for i, htxt in enumerate(headers):
         c = t.rows[0].cells[i]
         shade(c, "EDF2F7")
@@ -110,9 +119,10 @@ def mdpi_table(caption, headers, rows, widths, bold_col=None):
             r.font.size = Pt(9)
             if bold_col is not None and i == bold_col:
                 r.bold = True
+    total = sum(widths)
     for i, w in enumerate(widths):
         for rr in t.rows:
-            rr.cells[i].width = Inches(w / 2.54)
+            rr.cells[i].width = Twips(int(10466 * w / total))
     for rr in t.rows:
         for c in rr.cells:
             c.paragraphs[0].paragraph_format.space_before = Pt(1)
@@ -138,8 +148,8 @@ p = para("MDPI_1.3_authornames")
 add_run(p, "Madajabbar Palapa Hakim ")
 add_run(p, "1", sup=True)
 p = para("MDPI_1.6_affiliation")
-add_run(p, "1\tMaster of Informatics Engineering, Universitas Nusa Mandiri; madajabbar22@gmail.com")
-para("MDPI_1.6_affiliation", "*\tCorrespondence: madajabbar22@gmail.com")
+add_run(p, "1\tMaster of Informatics Engineering, Universitas Nusa Mandiri; 14260009@nusamandiri.ac.id")
+para("MDPI_1.6_affiliation", "*\tCorrespondence: 14260009@nusamandiri.ac.id")
 para("MDPI_1.7_abstract",
      "Deep hybrid pipelines that chain a seasonal statistical model with recurrent networks are a popular "
      "template for daily air pollution forecasting, but their accuracy advantage is rarely tested against "
