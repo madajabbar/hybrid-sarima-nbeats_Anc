@@ -59,9 +59,22 @@ body = doc.element.body
 for child in list(body):
     if not child.tag.endswith("sectPr"):
         body.remove(child)
+sp = body.find("{http://schemas.openxmlformats.org/wordprocessingml/2006/main}sectPr")
+if sp is not None:
+    for ln in sp.findall("{http://schemas.openxmlformats.org/wordprocessingml/2006/main}lnNumType"):
+        sp.remove(ln)
 
 def para(style, text=""):
     return doc.add_paragraph(text, style=style)
+
+def spacer(pt=5):
+    p = doc.add_paragraph()
+    from docx.enum.text import WD_LINE_SPACING
+    pf = p.paragraph_format
+    pf.space_before, pf.space_after = Pt(0), Pt(0)
+    pf.line_spacing_rule = WD_LINE_SPACING.EXACTLY
+    pf.line_spacing = Pt(pt)
+    return p
 
 def add_run(p, text, sup=False, bold=False):
     r = p.add_run(text)
@@ -79,7 +92,9 @@ def tbl_borders(t):
         '<w:left w:val="none"/><w:right w:val="none"/></w:tblBorders>'))
 
 def mdpi_table(caption, headers, rows, widths, bold_col=None):
-    para("MDPI_4.1_table_caption", "Table " + caption)
+    cp = para("MDPI_4.1_table_caption", "Table " + caption)
+    cp.paragraph_format.keep_with_next = True
+    cp.paragraph_format.space_before, cp.paragraph_format.space_after = Pt(12), Pt(6)
     t = doc.add_table(rows=1, cols=len(headers))
     t.style = doc.styles["MDPI_table"]
     tbl_borders(t)
@@ -98,12 +113,21 @@ def mdpi_table(caption, headers, rows, widths, bold_col=None):
     for i, w in enumerate(widths):
         for rr in t.rows:
             rr.cells[i].width = Inches(w / 2.54)
+    for rr in t.rows:
+        for c in rr.cells:
+            c.paragraphs[0].paragraph_format.space_before = Pt(1)
+            c.paragraphs[0].paragraph_format.space_after = Pt(1)
+    spacer(7)
 
 def fig(fname, caption, width=6.6):
     p = doc.add_paragraph(style="MDPI_5.2_figure")
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p.paragraph_format.keep_with_next = True
+    p.paragraph_format.space_before, p.paragraph_format.space_after = Pt(10), Pt(4)
     p.add_run().add_picture(os.path.join(FIGD, fname), width=Inches(width))
-    para("MDPI_5.1_figure_caption", caption)
+    cp = para("MDPI_5.1_figure_caption", caption)
+    cp.paragraph_format.space_after = Pt(12)
+    spacer(5)
 
 # ================= HALAMAN DEPAN =================
 para("MDPI_1.1_article_type", "Article")
@@ -171,7 +195,9 @@ for it in [
     "C4. Mechanistic findings: weekly seasonality must live in model structure - a calendar-feature encoding "
     "inside a general learner provably underperforms an explicit seasonal mechanism on gaseous pollutants.",
 ]:
-    para("MDPI_3.7_itemize", it)
+    ip = para("MDPI_3.7_itemize", it)
+    ip.paragraph_format.space_after = Pt(5)
+spacer(5)
 
 # ---------- 2 ----------
 para("MDPI_2.1_heading1", "2. Literature Review")
@@ -412,7 +438,7 @@ para("MDPI_3.1_text",
 
 # ---------- 6 ----------
 para("MDPI_2.1_heading1", "6. Conclusions")
-para("MDPI_31_text" if False else "MDPI_3.1_text",
+para("MDPI_3.1_text",
      "This paper proposed a lightweight univariate ensemble - a direct LightGBM model on lag and calendar "
      "features averaged with a weekly-seasonal Theta extrapolator - for daily PM10, PM2.5, and NO2 "
      "forecasting, and tested it against twenty-two baselines under one frozen protocol that includes a "
