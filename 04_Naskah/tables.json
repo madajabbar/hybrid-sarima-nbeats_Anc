@@ -1,0 +1,1189 @@
+{
+ "desc": {
+  "PM10": {
+   "mean": 25.147426067907993,
+   "min": 3.06,
+   "max": 184.62,
+   "std": 13.308190727508249,
+   "skew": 3.009926863399925,
+   "kurt": 20.930691266992426,
+   "median": 22.095,
+   "q1": 16.715,
+   "q3": 30.28
+  },
+  "PM25": {
+   "mean": 16.86552026286966,
+   "min": 3.12,
+   "max": 96.52,
+   "std": 10.060235754086898,
+   "skew": 2.1575028042615396,
+   "kurt": 7.544633153144257,
+   "median": 13.94,
+   "q1": 10.2225,
+   "q3": 20.482499999999998
+  },
+  "NO2": {
+   "mean": 43.356314348302305,
+   "min": 11.88,
+   "max": 99.98,
+   "std": 14.040759182057366,
+   "skew": 0.5315758242373547,
+   "kurt": 0.5885935808004028,
+   "median": 42.53,
+   "q1": 33.67,
+   "q3": 52.43
+  }
+ },
+ "stationarity": {
+  "PM10": {
+   "adf_stat": -7.239197451974085,
+   "adf_p": 1.90393042523356e-10,
+   "kpss_stat": 0.46709826295632173,
+   "kpss_p": 0.049076967802630246
+  },
+  "PM25": {
+   "adf_stat": -4.723301685146044,
+   "adf_p": 7.60678593958124e-05,
+   "kpss_stat": 0.8712065697278153,
+   "kpss_p": 0.01
+  },
+  "NO2": {
+   "adf_stat": -4.77467187878718,
+   "adf_p": 6.078957690813956e-05,
+   "kpss_stat": 1.4791871607191263,
+   "kpss_p": 0.01
+  }
+ },
+ "perf": [
+  {
+   "target": "PM10",
+   "horizon": 1,
+   "model": "Full hybrid (SARIMA+BiLSTM+Fourier+Attention)",
+   "key": "hybrid",
+   "rmse": 0.11933410236866412,
+   "mae": 0.09026635188952375,
+   "mape": 32.13044251214117,
+   "n": 118
+  },
+  {
+   "target": "PM10",
+   "horizon": 1,
+   "model": "SARIMA (weekly)",
+   "key": "sarima",
+   "rmse": 0.11482590597041027,
+   "mae": 0.084208258252301,
+   "mape": 30.093797404589584,
+   "n": 118
+  },
+  {
+   "target": "PM10",
+   "horizon": 1,
+   "model": "Theta",
+   "key": "theta",
+   "rmse": 0.12621274484383516,
+   "mae": 0.0921258760396739,
+   "mape": 31.587265064572616,
+   "n": 118
+  },
+  {
+   "target": "PM10",
+   "horizon": 1,
+   "model": "LightGBM + Theta ensemble",
+   "key": "ens",
+   "rmse": 0.10663478605551778,
+   "mae": 0.0764413353196784,
+   "mape": 25.938936766075187,
+   "n": 118
+  },
+  {
+   "target": "PM10",
+   "horizon": 7,
+   "model": "Full hybrid (SARIMA+BiLSTM+Fourier+Attention)",
+   "key": "hybrid",
+   "rmse": 0.15385467074870512,
+   "mae": 0.10877874018141778,
+   "mape": 37.494291651526574,
+   "n": 118
+  },
+  {
+   "target": "PM10",
+   "horizon": 7,
+   "model": "SARIMA (weekly)",
+   "key": "sarima",
+   "rmse": 0.1524563617292265,
+   "mae": 0.11131276673956138,
+   "mape": 37.32271456878508,
+   "n": 118
+  },
+  {
+   "target": "PM10",
+   "horizon": 7,
+   "model": "Theta",
+   "key": "theta",
+   "rmse": 0.1602129258402036,
+   "mae": 0.12507999162667033,
+   "mape": 36.97031483185144,
+   "n": 118
+  },
+  {
+   "target": "PM10",
+   "horizon": 7,
+   "model": "LightGBM + Theta ensemble",
+   "key": "ens",
+   "rmse": 0.1394775837293923,
+   "mae": 0.10853400193837834,
+   "mape": 34.53196055768698,
+   "n": 117
+  },
+  {
+   "target": "PM10",
+   "horizon": 30,
+   "model": "Full hybrid (SARIMA+BiLSTM+Fourier+Attention)",
+   "key": "hybrid",
+   "rmse": 0.15326540398025318,
+   "mae": 0.12287955447307077,
+   "mape": 47.637937434762506,
+   "n": 113
+  },
+  {
+   "target": "PM10",
+   "horizon": 30,
+   "model": "SARIMA (weekly)",
+   "key": "sarima",
+   "rmse": 0.15176109508613778,
+   "mae": 0.11870229100854104,
+   "mape": 46.13465748452988,
+   "n": 113
+  },
+  {
+   "target": "PM10",
+   "horizon": 30,
+   "model": "Theta",
+   "key": "theta",
+   "rmse": 0.1571169435150889,
+   "mae": 0.12579779511617578,
+   "mape": 45.903006192981934,
+   "n": 113
+  },
+  {
+   "target": "PM10",
+   "horizon": 30,
+   "model": "LightGBM + Theta ensemble",
+   "key": "ens",
+   "rmse": 0.13830726184684336,
+   "mae": 0.10820597585764921,
+   "mape": 39.91213480312639,
+   "n": 112
+  },
+  {
+   "target": "PM25",
+   "horizon": 1,
+   "model": "Full hybrid (SARIMA+BiLSTM+Fourier+Attention)",
+   "key": "hybrid",
+   "rmse": 0.06523603766208845,
+   "mae": 0.04843610952633396,
+   "mape": 33.79704289128896,
+   "n": 118
+  },
+  {
+   "target": "PM25",
+   "horizon": 1,
+   "model": "SARIMA (weekly)",
+   "key": "sarima",
+   "rmse": 0.06538618893344554,
+   "mae": 0.048269944315272977,
+   "mape": 33.64596569749318,
+   "n": 118
+  },
+  {
+   "target": "PM25",
+   "horizon": 1,
+   "model": "Theta",
+   "key": "theta",
+   "rmse": 0.0687294563105157,
+   "mae": 0.05342725305594765,
+   "mape": 36.34771430119726,
+   "n": 118
+  },
+  {
+   "target": "PM25",
+   "horizon": 1,
+   "model": "LightGBM + Theta ensemble",
+   "key": "ens",
+   "rmse": 0.06161521003156449,
+   "mae": 0.04598411192753115,
+   "mape": 31.7450346338682,
+   "n": 118
+  },
+  {
+   "target": "PM25",
+   "horizon": 7,
+   "model": "Full hybrid (SARIMA+BiLSTM+Fourier+Attention)",
+   "key": "hybrid",
+   "rmse": 0.07362775588096772,
+   "mae": 0.059591122890178316,
+   "mape": 35.18941643889997,
+   "n": 118
+  },
+  {
+   "target": "PM25",
+   "horizon": 7,
+   "model": "SARIMA (weekly)",
+   "key": "sarima",
+   "rmse": 0.07377232203380112,
+   "mae": 0.05986335593682475,
+   "mape": 35.170324886929045,
+   "n": 118
+  },
+  {
+   "target": "PM25",
+   "horizon": 7,
+   "model": "Theta",
+   "key": "theta",
+   "rmse": 0.08546932808670013,
+   "mae": 0.06766908529872602,
+   "mape": 38.637877292391494,
+   "n": 118
+  },
+  {
+   "target": "PM25",
+   "horizon": 7,
+   "model": "LightGBM + Theta ensemble",
+   "key": "ens",
+   "rmse": 0.0725708669947126,
+   "mae": 0.05590898316416454,
+   "mape": 33.15149453016095,
+   "n": 117
+  },
+  {
+   "target": "PM25",
+   "horizon": 30,
+   "model": "Full hybrid (SARIMA+BiLSTM+Fourier+Attention)",
+   "key": "hybrid",
+   "rmse": 0.09036957363344554,
+   "mae": 0.07400534926840813,
+   "mape": 54.91350589902141,
+   "n": 113
+  },
+  {
+   "target": "PM25",
+   "horizon": 30,
+   "model": "SARIMA (weekly)",
+   "key": "sarima",
+   "rmse": 0.089948812004943,
+   "mae": 0.072882421592112,
+   "mape": 54.259100946232294,
+   "n": 113
+  },
+  {
+   "target": "PM25",
+   "horizon": 30,
+   "model": "Theta",
+   "key": "theta",
+   "rmse": 0.08646253690017612,
+   "mae": 0.07137230531464374,
+   "mape": 49.13097657325072,
+   "n": 113
+  },
+  {
+   "target": "PM25",
+   "horizon": 30,
+   "model": "LightGBM + Theta ensemble",
+   "key": "ens",
+   "rmse": 0.07252955558551195,
+   "mae": 0.057995308442882906,
+   "mape": 40.633193895338096,
+   "n": 112
+  },
+  {
+   "target": "NO2",
+   "horizon": 1,
+   "model": "Full hybrid (SARIMA+BiLSTM+Fourier+Attention)",
+   "key": "hybrid",
+   "rmse": 0.6666264823036772,
+   "mae": 0.5658842173898192,
+   "mape": 24.68630303802416,
+   "n": 118
+  },
+  {
+   "target": "NO2",
+   "horizon": 1,
+   "model": "SARIMA (weekly)",
+   "key": "sarima",
+   "rmse": 0.6006992179619866,
+   "mae": 0.5106122776801602,
+   "mape": 22.32238899802215,
+   "n": 118
+  },
+  {
+   "target": "NO2",
+   "horizon": 1,
+   "model": "Theta",
+   "key": "theta",
+   "rmse": 0.6422311455619552,
+   "mae": 0.5194193245508986,
+   "mape": 22.53680179720792,
+   "n": 118
+  },
+  {
+   "target": "NO2",
+   "horizon": 1,
+   "model": "LightGBM + Theta ensemble",
+   "key": "ens",
+   "rmse": 0.7362689393577462,
+   "mae": 0.5842620353949857,
+   "mape": 25.79230082895237,
+   "n": 118
+  },
+  {
+   "target": "NO2",
+   "horizon": 7,
+   "model": "Full hybrid (SARIMA+BiLSTM+Fourier+Attention)",
+   "key": "hybrid",
+   "rmse": 0.9331451546544866,
+   "mae": 0.6976329679227303,
+   "mape": 30.733774433938155,
+   "n": 118
+  },
+  {
+   "target": "NO2",
+   "horizon": 7,
+   "model": "SARIMA (weekly)",
+   "key": "sarima",
+   "rmse": 0.8888655346037457,
+   "mae": 0.6695971557550923,
+   "mape": 29.40497192511528,
+   "n": 118
+  },
+  {
+   "target": "NO2",
+   "horizon": 7,
+   "model": "Theta",
+   "key": "theta",
+   "rmse": 0.9471439538972692,
+   "mae": 0.7286260705519799,
+   "mape": 32.652211195546485,
+   "n": 118
+  },
+  {
+   "target": "NO2",
+   "horizon": 7,
+   "model": "LightGBM + Theta ensemble",
+   "key": "ens",
+   "rmse": 0.9650304066202885,
+   "mae": 0.7390629722243177,
+   "mape": 33.3039283320206,
+   "n": 117
+  },
+  {
+   "target": "NO2",
+   "horizon": 30,
+   "model": "Full hybrid (SARIMA+BiLSTM+Fourier+Attention)",
+   "key": "hybrid",
+   "rmse": 0.7475683153241541,
+   "mae": 0.6060840619407437,
+   "mape": 24.78160027012209,
+   "n": 113
+  },
+  {
+   "target": "NO2",
+   "horizon": 30,
+   "model": "SARIMA (weekly)",
+   "key": "sarima",
+   "rmse": 0.7042936149705166,
+   "mae": 0.5353888540667535,
+   "mape": 21.97972170207757,
+   "n": 113
+  },
+  {
+   "target": "NO2",
+   "horizon": 30,
+   "model": "Theta",
+   "key": "theta",
+   "rmse": 0.7137097807982643,
+   "mae": 0.5456770353353845,
+   "mape": 22.45980104899613,
+   "n": 113
+  },
+  {
+   "target": "NO2",
+   "horizon": 30,
+   "model": "LightGBM + Theta ensemble",
+   "key": "ens",
+   "rmse": 0.6988358488025764,
+   "mae": 0.564620641334211,
+   "mape": 22.862785294235128,
+   "n": 112
+  }
+ ],
+ "diag": [
+  {
+   "target": "PM10",
+   "horizon": 1,
+   "model": "Full hybrid (SARIMA+BiLSTM+Fourier+Attention)",
+   "key": "hybrid",
+   "resid_mean": -0.008397364738996889,
+   "resid_std": 0.11954590885562937,
+   "lb_p": 0.11076663547245783,
+   "jb_p": 9.118729788229218e-05,
+   "n": 118
+  },
+  {
+   "target": "PM10",
+   "horizon": 1,
+   "model": "SARIMA (weekly)",
+   "key": "sarima",
+   "resid_mean": -0.007768641576042012,
+   "resid_std": 0.11505135059469582,
+   "lb_p": 0.2636356720219476,
+   "jb_p": 3.6196552041651566e-06,
+   "n": 118
+  },
+  {
+   "target": "PM10",
+   "horizon": 1,
+   "model": "Theta",
+   "key": "theta",
+   "resid_mean": 0.00461382380101885,
+   "resid_std": 0.12666624870821347,
+   "lb_p": 0.038317641025030595,
+   "jb_p": 0.0015496452228732803,
+   "n": 118
+  },
+  {
+   "target": "PM10",
+   "horizon": 1,
+   "model": "LightGBM + Theta ensemble",
+   "key": "ens",
+   "resid_mean": -0.008786186821963214,
+   "resid_std": 0.10672538852987608,
+   "lb_p": 0.1916498247465423,
+   "jb_p": 0.016473189621207102,
+   "n": 118
+  },
+  {
+   "target": "PM10",
+   "horizon": 7,
+   "model": "Full hybrid (SARIMA+BiLSTM+Fourier+Attention)",
+   "key": "hybrid",
+   "resid_mean": 0.00747252964173229,
+   "resid_std": 0.1543284232316789,
+   "lb_p": 0.0068749573656532404,
+   "jb_p": 0.03819315248212314,
+   "n": 118
+  },
+  {
+   "target": "PM10",
+   "horizon": 7,
+   "model": "SARIMA (weekly)",
+   "key": "sarima",
+   "resid_mean": 0.009860652124917227,
+   "resid_std": 0.1527859167286917,
+   "lb_p": 0.0008476287186249557,
+   "jb_p": 0.07981365034713564,
+   "n": 118
+  },
+  {
+   "target": "PM10",
+   "horizon": 7,
+   "model": "Theta",
+   "key": "theta",
+   "resid_mean": 0.03757013008685946,
+   "resid_std": 0.1564096827920855,
+   "lb_p": 0.1260164752354871,
+   "jb_p": 0.655865931914366,
+   "n": 118
+  },
+  {
+   "target": "PM10",
+   "horizon": 7,
+   "model": "LightGBM + Theta ensemble",
+   "key": "ens",
+   "resid_mean": 0.014809548373074317,
+   "resid_std": 0.13928564101171365,
+   "lb_p": 0.3522114606149231,
+   "jb_p": 0.9748041612408194,
+   "n": 117
+  },
+  {
+   "target": "PM10",
+   "horizon": 30,
+   "model": "Full hybrid (SARIMA+BiLSTM+Fourier+Attention)",
+   "key": "hybrid",
+   "resid_mean": -0.04602302707027737,
+   "resid_std": 0.1468434129902683,
+   "lb_p": 3.2152304391790995e-09,
+   "jb_p": 0.15309919005191971,
+   "n": 113
+  },
+  {
+   "target": "PM10",
+   "horizon": 30,
+   "model": "SARIMA (weekly)",
+   "key": "sarima",
+   "resid_mean": -0.044246307546799826,
+   "resid_std": 0.14581444453343675,
+   "lb_p": 3.180726510522131e-09,
+   "jb_p": 0.1710646217410903,
+   "n": 113
+  },
+  {
+   "target": "PM10",
+   "horizon": 30,
+   "model": "Theta",
+   "key": "theta",
+   "resid_mean": -0.015655907958445098,
+   "resid_std": 0.15703135471890745,
+   "lb_p": 2.1981382942743338e-16,
+   "jb_p": 0.179946251456446,
+   "n": 113
+  },
+  {
+   "target": "PM10",
+   "horizon": 30,
+   "model": "LightGBM + Theta ensemble",
+   "key": "ens",
+   "resid_mean": -0.03213283202052346,
+   "resid_std": 0.135127385212746,
+   "lb_p": 1.9369787520255082e-12,
+   "jb_p": 0.4091457084567023,
+   "n": 112
+  },
+  {
+   "target": "PM25",
+   "horizon": 1,
+   "model": "Full hybrid (SARIMA+BiLSTM+Fourier+Attention)",
+   "key": "hybrid",
+   "resid_mean": -0.005592755465734676,
+   "resid_std": 0.06527302816917124,
+   "lb_p": 0.08714891217984311,
+   "jb_p": 0.011908648447365937,
+   "n": 118
+  },
+  {
+   "target": "PM25",
+   "horizon": 1,
+   "model": "SARIMA (weekly)",
+   "key": "sarima",
+   "resid_mean": -0.006380858500792242,
+   "resid_std": 0.06535160164974714,
+   "lb_p": 0.09787036038924651,
+   "jb_p": 0.029834843778812088,
+   "n": 118
+  },
+  {
+   "target": "PM25",
+   "horizon": 1,
+   "model": "Theta",
+   "key": "theta",
+   "resid_mean": 0.00026628270306137085,
+   "resid_std": 0.06902202896677782,
+   "lb_p": 0.14768079923910785,
+   "jb_p": 0.0038644303361344205,
+   "n": 118
+  },
+  {
+   "target": "PM25",
+   "horizon": 1,
+   "model": "LightGBM + Theta ensemble",
+   "key": "ens",
+   "resid_mean": -0.00919881157631995,
+   "resid_std": 0.061184482474413056,
+   "lb_p": 0.08337206949574337,
+   "jb_p": 0.1500266610808994,
+   "n": 118
+  },
+  {
+   "target": "PM25",
+   "horizon": 7,
+   "model": "Full hybrid (SARIMA+BiLSTM+Fourier+Attention)",
+   "key": "hybrid",
+   "resid_mean": 0.018471635104000836,
+   "resid_std": 0.07157696984658038,
+   "lb_p": 0.019966103738758394,
+   "jb_p": 0.7430265045819884,
+   "n": 118
+  },
+  {
+   "target": "PM25",
+   "horizon": 7,
+   "model": "SARIMA (weekly)",
+   "key": "sarima",
+   "resid_mean": 0.01757498749076407,
+   "resid_std": 0.0719538127574492,
+   "lb_p": 0.015714337029949395,
+   "jb_p": 0.7778613576339903,
+   "n": 118
+  },
+  {
+   "target": "PM25",
+   "horizon": 7,
+   "model": "Theta",
+   "key": "theta",
+   "resid_mean": 0.03167759023784822,
+   "resid_std": 0.07972073510137741,
+   "lb_p": 0.001568805131464098,
+   "jb_p": 0.15043031706076315,
+   "n": 118
+  },
+  {
+   "target": "PM25",
+   "horizon": 7,
+   "model": "LightGBM + Theta ensemble",
+   "key": "ens",
+   "resid_mean": 0.020375533170961684,
+   "resid_std": 0.06995134398714452,
+   "lb_p": 0.0002371139352030965,
+   "jb_p": 0.1105865763009691,
+   "n": 117
+  },
+  {
+   "target": "PM25",
+   "horizon": 30,
+   "model": "Full hybrid (SARIMA+BiLSTM+Fourier+Attention)",
+   "key": "hybrid",
+   "resid_mean": -0.021241619929500882,
+   "resid_std": 0.08822891475269716,
+   "lb_p": 9.662317749330062e-06,
+   "jb_p": 0.07242612384314942,
+   "n": 113
+  },
+  {
+   "target": "PM25",
+   "horizon": 30,
+   "model": "SARIMA (weekly)",
+   "key": "sarima",
+   "resid_mean": -0.021773842647230528,
+   "resid_std": 0.08766239048365504,
+   "lb_p": 8.95492804534606e-06,
+   "jb_p": 0.08102269523713038,
+   "n": 113
+  },
+  {
+   "target": "PM25",
+   "horizon": 30,
+   "model": "Theta",
+   "key": "theta",
+   "resid_mean": -0.007035723076610603,
+   "resid_std": 0.08655966069837545,
+   "lb_p": 1.0199935593049814e-05,
+   "jb_p": 0.2175977887688096,
+   "n": 113
+  },
+  {
+   "target": "PM25",
+   "horizon": 30,
+   "model": "LightGBM + Theta ensemble",
+   "key": "ens",
+   "resid_mean": -0.015741194442527816,
+   "resid_std": 0.07111899290593186,
+   "lb_p": 4.4513034329116466e-05,
+   "jb_p": 0.16315182986662463,
+   "n": 112
+  },
+  {
+   "target": "NO2",
+   "horizon": 1,
+   "model": "Full hybrid (SARIMA+BiLSTM+Fourier+Attention)",
+   "key": "hybrid",
+   "resid_mean": -0.042970094498156426,
+   "resid_std": 0.6680769933027546,
+   "lb_p": 0.002775408790502981,
+   "jb_p": 0.04693720501246693,
+   "n": 118
+  },
+  {
+   "target": "NO2",
+   "horizon": 1,
+   "model": "SARIMA (weekly)",
+   "key": "sarima",
+   "resid_mean": -0.0707546497323824,
+   "resid_std": 0.5990614663907391,
+   "lb_p": 0.018978044882871938,
+   "jb_p": 0.10314990633156686,
+   "n": 118
+  },
+  {
+   "target": "NO2",
+   "horizon": 1,
+   "model": "Theta",
+   "key": "theta",
+   "resid_mean": -0.051147806972999345,
+   "resid_std": 0.6429212181287455,
+   "lb_p": 0.09713554182911603,
+   "jb_p": 0.51287578461925,
+   "n": 118
+  },
+  {
+   "target": "NO2",
+   "horizon": 1,
+   "model": "LightGBM + Theta ensemble",
+   "key": "ens",
+   "resid_mean": -0.034318886876709406,
+   "resid_std": 0.7386050115308899,
+   "lb_p": 0.02861237851762435,
+   "jb_p": 0.33982072874094,
+   "n": 118
+  },
+  {
+   "target": "NO2",
+   "horizon": 7,
+   "model": "Full hybrid (SARIMA+BiLSTM+Fourier+Attention)",
+   "key": "hybrid",
+   "resid_mean": -0.059254505913727586,
+   "resid_std": 0.9352332147364756,
+   "lb_p": 0.0014843910691095194,
+   "jb_p": 4.192573423351525e-05,
+   "n": 118
+  },
+  {
+   "target": "NO2",
+   "horizon": 7,
+   "model": "SARIMA (weekly)",
+   "key": "sarima",
+   "resid_mean": -0.07483955439983372,
+   "resid_std": 0.8894863379176375,
+   "lb_p": 0.005451404067781363,
+   "jb_p": 1.3446902837071048e-06,
+   "n": 118
+  },
+  {
+   "target": "NO2",
+   "horizon": 7,
+   "model": "Theta",
+   "key": "theta",
+   "resid_mean": -0.0876124772302808,
+   "resid_std": 0.9471047891104748,
+   "lb_p": 0.0003500316806507971,
+   "jb_p": 0.008976203639909796,
+   "n": 118
+  },
+  {
+   "target": "NO2",
+   "horizon": 7,
+   "model": "LightGBM + Theta ensemble",
+   "key": "ens",
+   "resid_mean": -0.051798549984021565,
+   "resid_std": 0.967783949790612,
+   "lb_p": 2.958652743645464e-06,
+   "jb_p": 0.17350709987455917,
+   "n": 117
+  },
+  {
+   "target": "NO2",
+   "horizon": 30,
+   "model": "Full hybrid (SARIMA+BiLSTM+Fourier+Attention)",
+   "key": "hybrid",
+   "resid_mean": 0.08645660207070535,
+   "resid_std": 0.7458597121895223,
+   "lb_p": 0.014958733432577241,
+   "jb_p": 0.5311085906591644,
+   "n": 113
+  },
+  {
+   "target": "NO2",
+   "horizon": 30,
+   "model": "SARIMA (weekly)",
+   "key": "sarima",
+   "resid_mean": 0.07811272353172988,
+   "resid_std": 0.7030663231498123,
+   "lb_p": 0.007382132246908045,
+   "jb_p": 0.2842189069374549,
+   "n": 113
+  },
+  {
+   "target": "NO2",
+   "horizon": 30,
+   "model": "Theta",
+   "key": "theta",
+   "resid_mean": 0.06259976499234686,
+   "resid_std": 0.7141260269877783,
+   "lb_p": 0.000837077311974125,
+   "jb_p": 0.6963250366290086,
+   "n": 113
+  },
+  {
+   "target": "NO2",
+   "horizon": 30,
+   "model": "LightGBM + Theta ensemble",
+   "key": "ens",
+   "resid_mean": 0.05340504064751324,
+   "resid_std": 0.6999239203377439,
+   "lb_p": 3.0614535971225764e-05,
+   "jb_p": 0.4579752480968554,
+   "n": 112
+  }
+ ],
+ "extreme": [
+  {
+   "target": "PM10",
+   "horizon": 1,
+   "model": "Full hybrid (SARIMA+BiLSTM+Fourier+Attention)",
+   "key": "hybrid",
+   "mape": 35.61219755618767,
+   "n": 10,
+   "thr": 40.56,
+   "max": 184.62
+  },
+  {
+   "target": "PM10",
+   "horizon": 1,
+   "model": "SARIMA (weekly)",
+   "key": "sarima",
+   "mape": 33.668444091305474,
+   "n": 10,
+   "thr": 40.56,
+   "max": 184.62
+  },
+  {
+   "target": "PM10",
+   "horizon": 1,
+   "model": "Theta",
+   "key": "theta",
+   "mape": 30.305338361001123,
+   "n": 10,
+   "thr": 40.56,
+   "max": 184.62
+  },
+  {
+   "target": "PM10",
+   "horizon": 1,
+   "model": "LightGBM + Theta ensemble",
+   "key": "ens",
+   "mape": 26.500553535330436,
+   "n": 10,
+   "thr": 40.56,
+   "max": 184.62
+  },
+  {
+   "target": "PM10",
+   "horizon": 7,
+   "model": "Full hybrid (SARIMA+BiLSTM+Fourier+Attention)",
+   "key": "hybrid",
+   "mape": 64.15007213714738,
+   "n": 10,
+   "thr": 40.56,
+   "max": 184.62
+  },
+  {
+   "target": "PM10",
+   "horizon": 7,
+   "model": "SARIMA (weekly)",
+   "key": "sarima",
+   "mape": 63.9113322689268,
+   "n": 10,
+   "thr": 40.56,
+   "max": 184.62
+  },
+  {
+   "target": "PM10",
+   "horizon": 7,
+   "model": "Theta",
+   "key": "theta",
+   "mape": 68.02265710860495,
+   "n": 10,
+   "thr": 40.56,
+   "max": 184.62
+  },
+  {
+   "target": "PM10",
+   "horizon": 7,
+   "model": "LightGBM + Theta ensemble",
+   "key": "ens",
+   "mape": 61.09835066001846,
+   "n": 10,
+   "thr": 40.56,
+   "max": 184.62
+  },
+  {
+   "target": "PM10",
+   "horizon": 30,
+   "model": "Full hybrid (SARIMA+BiLSTM+Fourier+Attention)",
+   "key": "hybrid",
+   "mape": 54.79823825942318,
+   "n": 10,
+   "thr": 40.56,
+   "max": 184.62
+  },
+  {
+   "target": "PM10",
+   "horizon": 30,
+   "model": "SARIMA (weekly)",
+   "key": "sarima",
+   "mape": 53.88850109434743,
+   "n": 10,
+   "thr": 40.56,
+   "max": 184.62
+  },
+  {
+   "target": "PM10",
+   "horizon": 30,
+   "model": "Theta",
+   "key": "theta",
+   "mape": 50.980446498869306,
+   "n": 10,
+   "thr": 40.56,
+   "max": 184.62
+  },
+  {
+   "target": "PM10",
+   "horizon": 30,
+   "model": "LightGBM + Theta ensemble",
+   "key": "ens",
+   "mape": 55.91716989124824,
+   "n": 10,
+   "thr": 40.56,
+   "max": 184.62
+  },
+  {
+   "target": "PM25",
+   "horizon": 1,
+   "model": "Full hybrid (SARIMA+BiLSTM+Fourier+Attention)",
+   "key": "hybrid",
+   "mape": 48.59534982105818,
+   "n": 14,
+   "thr": 29.15,
+   "max": 96.52
+  },
+  {
+   "target": "PM25",
+   "horizon": 1,
+   "model": "SARIMA (weekly)",
+   "key": "sarima",
+   "mape": 46.83409200314004,
+   "n": 14,
+   "thr": 29.15,
+   "max": 96.52
+  },
+  {
+   "target": "PM25",
+   "horizon": 1,
+   "model": "Theta",
+   "key": "theta",
+   "mape": 46.98068546530788,
+   "n": 14,
+   "thr": 29.15,
+   "max": 96.52
+  },
+  {
+   "target": "PM25",
+   "horizon": 1,
+   "model": "LightGBM + Theta ensemble",
+   "key": "ens",
+   "mape": 43.64444879220516,
+   "n": 14,
+   "thr": 29.15,
+   "max": 96.52
+  },
+  {
+   "target": "PM25",
+   "horizon": 7,
+   "model": "Full hybrid (SARIMA+BiLSTM+Fourier+Attention)",
+   "key": "hybrid",
+   "mape": 58.87543092331221,
+   "n": 14,
+   "thr": 29.15,
+   "max": 96.52
+  },
+  {
+   "target": "PM25",
+   "horizon": 7,
+   "model": "SARIMA (weekly)",
+   "key": "sarima",
+   "mape": 59.43715970915511,
+   "n": 14,
+   "thr": 29.15,
+   "max": 96.52
+  },
+  {
+   "target": "PM25",
+   "horizon": 7,
+   "model": "Theta",
+   "key": "theta",
+   "mape": 60.84438896240687,
+   "n": 14,
+   "thr": 29.15,
+   "max": 96.52
+  },
+  {
+   "target": "PM25",
+   "horizon": 7,
+   "model": "LightGBM + Theta ensemble",
+   "key": "ens",
+   "mape": 56.54143873263256,
+   "n": 14,
+   "thr": 29.15,
+   "max": 96.52
+  },
+  {
+   "target": "PM25",
+   "horizon": 30,
+   "model": "Full hybrid (SARIMA+BiLSTM+Fourier+Attention)",
+   "key": "hybrid",
+   "mape": 61.82667274039664,
+   "n": 14,
+   "thr": 29.15,
+   "max": 96.52
+  },
+  {
+   "target": "PM25",
+   "horizon": 30,
+   "model": "SARIMA (weekly)",
+   "key": "sarima",
+   "mape": 59.891318155642935,
+   "n": 14,
+   "thr": 29.15,
+   "max": 96.52
+  },
+  {
+   "target": "PM25",
+   "horizon": 30,
+   "model": "Theta",
+   "key": "theta",
+   "mape": 56.051529259838574,
+   "n": 14,
+   "thr": 29.15,
+   "max": 96.52
+  },
+  {
+   "target": "PM25",
+   "horizon": 30,
+   "model": "LightGBM + Theta ensemble",
+   "key": "ens",
+   "mape": 38.43382530579134,
+   "n": 14,
+   "thr": 29.15,
+   "max": 96.52
+  },
+  {
+   "target": "NO2",
+   "horizon": 1,
+   "model": "Full hybrid (SARIMA+BiLSTM+Fourier+Attention)",
+   "key": "hybrid",
+   "mape": 17.237288496185922,
+   "n": 10,
+   "thr": 60.455,
+   "max": 99.98
+  },
+  {
+   "target": "NO2",
+   "horizon": 1,
+   "model": "SARIMA (weekly)",
+   "key": "sarima",
+   "mape": 9.638335619263449,
+   "n": 10,
+   "thr": 60.455,
+   "max": 99.98
+  },
+  {
+   "target": "NO2",
+   "horizon": 1,
+   "model": "Theta",
+   "key": "theta",
+   "mape": 16.410191379939857,
+   "n": 10,
+   "thr": 60.455,
+   "max": 99.98
+  },
+  {
+   "target": "NO2",
+   "horizon": 1,
+   "model": "LightGBM + Theta ensemble",
+   "key": "ens",
+   "mape": 12.242149862428242,
+   "n": 10,
+   "thr": 60.455,
+   "max": 99.98
+  },
+  {
+   "target": "NO2",
+   "horizon": 7,
+   "model": "Full hybrid (SARIMA+BiLSTM+Fourier+Attention)",
+   "key": "hybrid",
+   "mape": 44.840433966810934,
+   "n": 10,
+   "thr": 60.455,
+   "max": 99.98
+  },
+  {
+   "target": "NO2",
+   "horizon": 7,
+   "model": "SARIMA (weekly)",
+   "key": "sarima",
+   "mape": 42.57913724405455,
+   "n": 10,
+   "thr": 60.455,
+   "max": 99.98
+  },
+  {
+   "target": "NO2",
+   "horizon": 7,
+   "model": "Theta",
+   "key": "theta",
+   "mape": 41.32283413807662,
+   "n": 10,
+   "thr": 60.455,
+   "max": 99.98
+  },
+  {
+   "target": "NO2",
+   "horizon": 7,
+   "model": "LightGBM + Theta ensemble",
+   "key": "ens",
+   "mape": 43.516009171182915,
+   "n": 10,
+   "thr": 60.455,
+   "max": 99.98
+  },
+  {
+   "target": "NO2",
+   "horizon": 30,
+   "model": "Full hybrid (SARIMA+BiLSTM+Fourier+Attention)",
+   "key": "hybrid",
+   "mape": 4.46056353969277,
+   "n": 10,
+   "thr": 60.455,
+   "max": 99.98
+  },
+  {
+   "target": "NO2",
+   "horizon": 30,
+   "model": "SARIMA (weekly)",
+   "key": "sarima",
+   "mape": 6.846154654910358,
+   "n": 10,
+   "thr": 60.455,
+   "max": 99.98
+  },
+  {
+   "target": "NO2",
+   "horizon": 30,
+   "model": "Theta",
+   "key": "theta",
+   "mape": 6.437474774628997,
+   "n": 10,
+   "thr": 60.455,
+   "max": 99.98
+  },
+  {
+   "target": "NO2",
+   "horizon": 30,
+   "model": "LightGBM + Theta ensemble",
+   "key": "ens",
+   "mape": 4.0139729341890185,
+   "n": 10,
+   "thr": 60.455,
+   "max": 99.98
+  }
+ ],
+ "lambda": {
+  "PM10": -0.2935996389268133,
+  "PM25": -0.5285793166387163,
+  "NO2": 0.3059347489200212
+ },
+ "n": {
+  "PM10": 1826,
+  "PM25": 1826,
+  "NO2": 1826
+ }
+}
