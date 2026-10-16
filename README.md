@@ -32,7 +32,7 @@ The paper's BiLSTM was re-run on **all 5 folds** (the paper reports only fold-0)
 |---|---|
 | `data/transformed_data.csv` | Romania air quality, 1,826 daily rows (NO2/PM10/PM2.5, Box-Cox). Source: [elephant2015/Code4PollutantsBiLSTM](https://github.com/elephant2015/Code4PollutantsBiLSTM) |
 | `reference/` | Verbatim copy of the original paper notebooks (read-only) |
-| `notebooks/` | Executed work notebooks — `01`–`05` (replication & old recipe), **`08_models_bakeoff3.ipynb` = final bake-off + results (start here)** |
+| `notebooks/` | Work notebooks — **`00_final_method_ens_lgbm_theta.ipynb` = final bake-off + readable results (start here)** · `unused/` = superseded replication notebooks + stale training checkpoints (N-BEATS arc, old recipe; kept for history) |
 | `scripts/` | One-phase scripts `03`–`19` (each maps to a phase in `03_Catatan/`); `18_fig_ensemble.py` = duel figures, `19_laporan_fase20.py` = formal report |
 | `results/` | Frozen CSVs per phase + `figures/` + `run_20.log` |
 | `03_Catatan/` | Phase findings (Indonesian), incl. `HASIL_BAKEOFF3.md` (fase 20 verdict) and the formal report `Laporan_Fase20_Ensemble_LGBM_Theta.pdf` |
@@ -41,7 +41,8 @@ The paper's BiLSTM was re-run on **all 5 folds** (the paper reports only fold-0)
 
 ```bash
 # readable results notebook (skips training if results/20_bakeoff3_predictions.csv exists):
-#   open notebooks/08_models_bakeoff3.ipynb  (full run from scratch: delete that CSV, ~17 min CPU)
+#   open notebooks/00_final_method_ens_lgbm_theta.ipynb
+#   (full run from scratch: delete that CSV, ~17 min CPU)
 
 # regenerate duel figures + formal report:
 python scripts/18_fig_ensemble.py
@@ -49,7 +50,7 @@ python scripts/19_laporan_fase20.py && soffice --headless --convert-to pdf 03_Ca
 ```
 
 Reference BiLSTM arm (all folds) needs a GPU session (Kaggle T4, ~45 min):
-`notebooks/05_bilstm_all_folds.ipynb` (or `scripts/13_bilstm_all_folds.py` + `scripts/14_vs_bilstm_all_folds.py`).
+`notebooks/unused/05_bilstm_all_folds.ipynb` (or `scripts/13_bilstm_all_folds.py` + `scripts/14_vs_bilstm_all_folds.py`).
 
 ## Method-selection trail (why ens_lgbm_theta)
 

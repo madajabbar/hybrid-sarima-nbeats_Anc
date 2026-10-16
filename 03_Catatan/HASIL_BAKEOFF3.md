@@ -3,8 +3,9 @@
 _Dicatat: 16 Okt 2026. Arahan Tuan: metode pengganti harus mengganti SARIMA **juga** (bukan
 hanya BiLSTM); naskah hanya menulis satu metode terbaik. Router ditiadakan dari status
 kandidat. Protokol identik fase 18/19: 5 lipatan (geser 120), 24 origin, h=1/7/30,
-RMSE skala Box-Cox, mask `t+h ≤ t0−1`, DM classic. Script `notebooks/08_models_bakeoff3.ipynb`
-(dieksekusi; penyokong CLI hilang — versi awal `.py` ada di riwayat Git),
+RMSE skala Box-Cox, mask `t+h ≤ t0−1`, DM classic. Notebook utama
+`notebooks/00_final_method_ens_lgbm_theta.ipynb` (dieksekusi; versi awal `.py` ada di
+riwayat Git; notebook replikasi lama pindah ke `notebooks/unused/`),
 artefak `results/20_*.csv`._
 
 ## Lengan baru (semua bebas SARIMA)
