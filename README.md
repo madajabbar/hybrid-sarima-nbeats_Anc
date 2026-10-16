@@ -1,31 +1,60 @@
-# Air Pollution Forecasting: SARIMA + N-BEATS Hybrid (method-swap replication)
+# Air Pollution Forecasting: Method-Swap Replication (Necula 2025 → Ensemble LGBM + Theta)
 
 Reproduction-with-swap of:
 
 > Necula, C., Hauer, M., Fotache, D., Hurbean, E. (2025). *Advanced Hybrid Models for Air Pollution Forecasting: Combining SARIMA and BiLSTM Architectures.* Electronics 14(3), 549, MDPI. https://doi.org/10.3390/electronics14030549
 
-Original SARIMA+BiLSTM pipeline kept as reference; the **BiLSTM component is replaced by N-BEATS** (Oreshkin et al., 2020) and compared on accuracy (RMSE/MAE/MAPE, horizons 1/7/30 days) **and computational cost** (training time, parameter count) — the accuracy-vs-complexity trade-off.
+Coursework: **Algorithms & Complexity**, S2 Informatika, Universitas Nusa Mandiri.
 
-## Structure
-- `data/transformed_data.csv` — original dataset (Box-Cox transformed, 1,826 daily rows, Romania, 2019–2023; PM10/PM2.5/NO2). From [elephant2015/Code4PollutantsBiLSTM](https://github.com/elephant2015/Code4PollutantsBiLSTM).
-- `reference/` — verbatim copy of the original notebooks (read-only, unmodified).
-- `notebooks/01_baseline_*.ipynb` — original notebooks, paths adapted to run from this repo (Colab/VS Code kernel).
-- `notebooks/02_nbeats_swap.ipynb` — our experiment: SARIMA → residual → N-BEATS hybrid, same split & horizons.
-- `notebooks/03_final_recipe.ipynb` — reads the CSVs in `results/` and prints the final tables (no retraining).
-- `notebooks/04_end_to_end.ipynb` — full pipeline from raw data in one runnable notebook: Box-Cox → SARIMA (weekly) → residual → Ridge correction → gated volume (alpha) → RMSE comparison, step by step with explanations. ~30 s for one pollutant/fold.
-- `notebooks/05_bilstm_all_folds.ipynb` — **GPU (Kaggle/Colab)**: runs the reference BiLSTM arm on all 5 folds x 3 pollutants (`scripts/13_bilstm_all_folds.py`, ~45 min on T4), then `scripts/14_vs_bilstm_all_folds.py` produces the head-to-head table vs our recipe on identical folds/origins.
-- `results/` — metric tables (CSV).
+## Final result (locked 16 Oct 2026)
 
-## Run
-CPU only (laptop), in order:
-1. `python scripts/12_full_final.py` → frozen recipe, 9 cells x 5 folds (~4 min)
-2. `notebooks/04_end_to_end.ipynb` → step-by-step walkthrough of the same pipeline (~30 s)
-3. `notebooks/03_final_recipe.ipynb` → print final tables from the CSVs (no retraining)
+The paper's full method (SARIMA s=12 + BiLSTM correction) is **entirely replaced** by one
+SARIMA-free, neural-free method:
 
-GPU (Kaggle T4 / Colab, ~45 min) — head-to-head vs the reference paper:
-4. `notebooks/05_bilstm_all_folds.ipynb` → reference BiLSTM arm on all folds, then the comparison table
-   (equivalently: `python scripts/13_bilstm_all_folds.py --tune off` then `python scripts/14_vs_bilstm_all_folds.py`)
+**`ens_lgbm_theta` — equal-weight average of LGBM (direct tabular learner on lag/calendar/weekly-Fourier features) and Theta (classical trend + weekly seasonal extrapolation).**
 
-Original reference notebooks (unchanged): `notebooks/01_baseline_bilstm.ipynb`, `01_baseline_attention_final.ipynb`, `01_baseline_fourier_final.ipynb`, `02_nbeats_swap.ipynb`.
+| Metric (RMSE, Box-Cox scale) | Value |
+|---|---|
+| Aggregate lead vs paper's full method (9 cells) | **−5.46%** |
+| Cells won (of 9 = 3 pollutants × horizons 1/7/30) | **7/9** (5 wins statistically significant, Diebold–Mariano) |
+| Statistically significant losses | **0** |
+| Largest edge | PM2.5, 30-day horizon: **−20.1%** |
+| Honest weakness | NO2 short horizon (h=1/7) stays slightly behind (not significant) |
+| Compute | CPU-only laptop; full bake-off ±17 min; no GPU |
 
-Coursework: Algorithms & Complexity, S2 Informatics, Universitas Nusa Mandiri.
+Full protocol: 5 rolling folds (720-day test window, shifted 120), 24 forecasting origins
+per fold, horizons 1/7/30, identical masks for every arm, Diebold–Mariano tests.
+The paper's BiLSTM was re-run on **all 5 folds** (the paper reports only fold-0).
+
+## Repository map
+
+| Path | Content |
+|---|---|
+| `data/transformed_data.csv` | Romania air quality, 1,826 daily rows (NO2/PM10/PM2.5, Box-Cox). Source: [elephant2015/Code4PollutantsBiLSTM](https://github.com/elephant2015/Code4PollutantsBiLSTM) |
+| `reference/` | Verbatim copy of the original paper notebooks (read-only) |
+| `notebooks/` | Executed work notebooks — `01`–`05` (replication & old recipe), **`08_models_bakeoff3.ipynb` = final bake-off + results (start here)** |
+| `scripts/` | One-phase scripts `03`–`19` (each maps to a phase in `03_Catatan/`); `18_fig_ensemble.py` = duel figures, `19_laporan_fase20.py` = formal report |
+| `results/` | Frozen CSVs per phase + `figures/` + `run_20.log` |
+| `03_Catatan/` | Phase findings (Indonesian), incl. `HASIL_BAKEOFF3.md` (fase 20 verdict) and the formal report `Laporan_Fase20_Ensemble_LGBM_Theta.pdf` |
+
+## How to run
+
+```bash
+# readable results notebook (skips training if results/20_bakeoff3_predictions.csv exists):
+#   open notebooks/08_models_bakeoff3.ipynb  (full run from scratch: delete that CSV, ~17 min CPU)
+
+# regenerate duel figures + formal report:
+python scripts/18_fig_ensemble.py
+python scripts/19_laporan_fase20.py && soffice --headless --convert-to pdf 03_Catatan/Laporan_Fase20_Ensemble_LGBM_Theta.docx --outdir 03_Catatan
+```
+
+Reference BiLSTM arm (all folds) needs a GPU session (Kaggle T4, ~45 min):
+`notebooks/05_bilstm_all_folds.ipynb` (or `scripts/13_bilstm_all_folds.py` + `scripts/14_vs_bilstm_all_folds.py`).
+
+## Method-selection trail (why ens_lgbm_theta)
+
+Fase 20 screened 12 SARIMA-free arms + 5 ensembles under the identical protocol
+(`results/20_bakeoff3_*.csv`). Runner-up `ens_lgbm_ets` edges the aggregate (−5.64%) but
+**loses significantly at NO2 h=1 (p=0.023)** → rejected. `ens_lgbm_theta` has zero significant
+losses. Earlier candidates (N-BEATS, SARIMA+LGBM ensemble, router) are documented in
+`03_Catatan/` as the negative results behind this choice.

@@ -8,7 +8,7 @@ di ranah yang PERSIS sama dengan resep beku (data, lipatan, titik uji, metrik)._
 
 - Data: `transformed_data.csv` 1.826 hari, Box-Cox (kalimat sama notebook 04).
 - 5 lipatan jendela ujian 720 hari, geser 120; 24 origin × 30 hari; h = 1/7/30.
-- Skripsi script: `notebooks/06_models_bakeoff.py`; artefak `results/18_*.csv`.
+- Skripsi script: `scripts/06_models_bakeoff.py`; artefak `results/18_*.csv`.
 - Lengan baru: **naive7** (dengar mingguan paling naif), **ARIMA nonmusiman**
   (SARIMA tanpa `(1,0,1,7)` — ablasion musiman), **ETS/Holt-Winters**
   (trend damped + musiman mingguan), **VAR** (tiga polutan serentak, lag pilih AIC).
@@ -65,7 +65,7 @@ krn satu lonjakan Feb 2022) → validasi makin panjang = pemilihan makin stabil.
 ## 6. Fase 19 — tambahan 4 lengan: Theta, RF langsung, MLP langsung, ensemble
 
 _Dicatat: 14 Okt 2026. Pertanyaan lanjutan: "Model lain?" → 4 kandidat lagi diuji di
-protokol yang persis sama. Script `notebooks/07_models_bakeoff2.py`, artefak `results/19_*.csv`._
+protokol yang persis sama. Script `scripts/07_models_bakeoff2.py`, artefak `results/19_*.csv`._
 
 **Lengan baru:** **Theta** (ekstrapolasi tren + musiman mingguan, metode klasik ringan),
 **RF langsung** (Random Forest, 200 pohon, fitur lag sama dgn LGBM langsung),
@@ -130,7 +130,7 @@ h7=lgbm_langsung, h30=ETS • PM25 h1=ridge_gate, h7=ensemble, h30=lgbm_langsung
 ## 8. Artefak
 
 `results/18_bakeoff_predictions.csv` • `18_bakeoff_metrics.csv` • `18_bakeoff_dm.csv` •
-`18_router_picks.csv` • `18_router_metrics.csv` • script `notebooks/06_models_bakeoff.py`
+`18_router_picks.csv` • `18_router_metrics.csv` • script `scripts/06_models_bakeoff.py`
 • `results/19_bakeoff2_predictions.csv` • `19_bakeoff2_metrics.csv` • `19_bakeoff2_dm.csv`
-• `19_router_metrics.csv` • script `notebooks/07_models_bakeoff2.py`
+• `19_router_metrics.csv` • script `scripts/07_models_bakeoff2.py`
 (semua belum di-commit — menunggu arahan Tuan).
